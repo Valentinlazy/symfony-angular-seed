@@ -1,0 +1,5 @@
+---
+# application tasks to be customized and to run after the main provision
+
+- name: install vendors
+  composer: command=install working_dir=/vagrant no_dev=no
