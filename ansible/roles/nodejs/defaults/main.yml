@@ -1,0 +1,5 @@
+---
+npm_global_packages:
+ - gulp
+ - bower
+ - jspm

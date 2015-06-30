@@ -1,7 +1,7 @@
 ---
 server:
     install: '1'
-    packages: [git, htop, nodejs, npm, imagemagick]
+    packages: [git, htop, imagemagick]
     timezone: Europe/Minsk
     locale: en_US.UTF-8
 vagrant_local:
@@ -26,4 +26,3 @@ xdebug:
     install: '1'
 composer:
     install: '1'
-

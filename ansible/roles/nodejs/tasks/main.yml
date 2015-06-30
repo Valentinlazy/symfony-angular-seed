@@ -1,0 +1,11 @@
+---
+
+- name: Add node.js repository
+  apt_repository: repo='deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu lucid main' state=present update-cache=yes
+
+- name: Install nodejs and npm
+  apt: pkg=nodejs state=present force=yes
+
+- name: Install npm packages global
+  npm: name={{ item }} global=yes
+  with_items: npm_global_packages

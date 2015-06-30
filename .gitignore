@@ -11,3 +11,7 @@
 /bin/
 /composer.phar
 .vagrant/
+.idea
+node_modules/
+jspm_packages/
+/web/vendors

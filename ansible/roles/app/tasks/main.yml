@@ -3,3 +3,6 @@
 
 - name: install vendors
   composer: command=install working_dir=/vagrant no_dev=no
+
+- name: install node packages
+  npm: path=/vagrant
