@@ -5,4 +5,10 @@
   composer: command=install working_dir=/vagrant no_dev=no
 
 - name: install node packages
-  npm: path=/vagrant
+  shell: npm install chdir=/vagrant
+
+- name: install jspm packages
+  shell: jspm install chdir=/vagrant
+
+- name: build frontend
+  shell: gulp build chdir=/vagrant

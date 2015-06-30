@@ -21,6 +21,18 @@ def which(cmd)
     end
     return nil
 end
+
+def require_plugin(name)
+  unless Vagrant.has_plugin?(name)
+    puts <<-EOT.strip
+      #{name} plugin required. Please run: "vagrant plugin install #{name}"
+    EOT
+    exit
+  end
+end
+
+require_plugin 'vagrant-hostmanager'
+
 Vagrant.configure("2") do |config|
 
     config.vm.provider :virtualbox do |v|
@@ -36,7 +48,13 @@ Vagrant.configure("2") do |config|
 
     config.vm.box = "ubuntu/trusty64"
     
-    config.vm.network :private_network, ip: "192.168.33.99"
+    config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
+        if hostname = (vm.ssh_info && vm.ssh_info[:host])
+            `vagrant ssh -c "hostname -I"`.split()[1]
+        end
+    end
+
+    config.vm.network :private_network, type: "dhcp"
     config.ssh.forward_agent = true
 
     #############################################################
@@ -47,15 +65,17 @@ Vagrant.configure("2") do |config|
     if which('ansible-playbook')
         config.vm.provision "ansible" do |ansible|
             ansible.playbook = "ansible/playbook.yml"
-            ansible.inventory_path = "ansible/inventories/dev"
             ansible.limit = 'all'
         end
     else
         config.vm.provision :shell, path: "ansible/windows.sh", args: ["callback"]
     end
 
-    
-    config.vm.synced_folder "./", "/vagrant", type: "nfs"
+    config.vm.synced_folder(
+        ".", "/vagrant",
+        type: "nfs",
+        mount_options:  %w(rw vers=3 tcp fsc actimeo=2)
+    )
 
 	config.hostmanager.enabled = true
 	config.hostmanager.manage_host = true
@@ -63,7 +83,6 @@ Vagrant.configure("2") do |config|
 	config.hostmanager.include_offline = true
 	config.vm.define 'callback' do |node|
 	    node.vm.hostname = 'callback.vagrant'
-    	node.vm.network :private_network, ip: '192.168.33.99'
     	node.hostmanager.aliases = %w(callback.vagrant)
 	end
 
