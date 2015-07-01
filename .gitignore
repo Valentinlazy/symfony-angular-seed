@@ -15,3 +15,7 @@
 node_modules/
 jspm_packages/
 /web/vendors
+/web/components
+/web/config
+/web/app.js
+/web/app.js.map
