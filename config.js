@@ -13,7 +13,7 @@ System.config({
     "npm:*": "jspm_packages/npm/*.js",
     "angular-es6/*": "lib/*.js"
   },
-  "baseUrl": "dist"
+  "baseUrl": "web"
 });
 
 System.config({

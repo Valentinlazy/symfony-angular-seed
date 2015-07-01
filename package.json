@@ -1,6 +1,6 @@
 {
-  "name": "angular-es6",
-  "version": "0.2.1",
+  "name": "callback",
+  "version": "0.1.0",
   "description": "AngularJS with JSPM and Babel for ES6",
   "keywords": [
     "angularjs",
@@ -8,8 +8,8 @@
     "6to5"
   ],
   "license": "MIT",
-  "author": "Vildan Softic <zewa666@gmail.com>",
-  "main": "index.js",
+  "author": "Valentin Saint <valik_p@tut.by>",
+  "main": "gulpfile.js",
   "devDependencies": {
     "browser-sync": "^1.8.1",
     "del": "^1.2.0",

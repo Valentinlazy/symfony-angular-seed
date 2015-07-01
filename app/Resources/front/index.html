@@ -2,7 +2,7 @@
 <html>
   <head>
     <!-- build:css css/styles.css -->
-    <link rel="stylesheet" type="text/css" href="jspm_packages/github/twbs/bootstrap@3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../jspm_packages/github/twbs/bootstrap@3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!-- endbuild -->
   </head>
@@ -25,19 +25,18 @@
         "paths": {
           "*": "/*.js",
           "github:*": "/jspm_packages/github/*.js",
-          "npm:*": "/jspm_packages/npm/*.js",
-          "angular-es6/*": "/lib/*.js"
+          "npm:*": "/jspm_packages/npm/*.js"
         }
       });
     </script>
     <script>
-      System.import('./dist/app').catch(console.error.bind(console));
+      System.import('./app').catch(console.error.bind(console));
     </script>
     <!-- @endif -->
     <!-- @if NODE_ENV='production' -->
-    <script src="system.js"></script>
-    <script src="config.js"></script>
-    <script src="app.js"></script>
+    <script src="vendors/system.js"></script>
+    <script src="vendors/config.js"></script>
+    <script src="vendors/app.js"></script>
     <!-- @endif -->
   </body>
 </html>

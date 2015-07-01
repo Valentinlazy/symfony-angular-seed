@@ -15,4 +15,4 @@
   sudo_user: vagrant
 
 - name: build frontend
-  shell: gulp build chdir=/vagrant
+  shell: gulp bundle chdir=/vagrant

@@ -84,7 +84,10 @@ gulp.task('serve', ['build'], function(done) {
       middleware: function (req, res, next) {
         if (req.url.match(/^(.(?!\..+))*$/) ||
             req.url === 'index.html') {
-          req.url = '/web/index.html';
+          req.url = '/index.html';
+        }
+        if(!req.url.match(/^\/?(jspm|config\.js|browser-sync)/)) {
+          req.url = '/web/' + req.url;
         }
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
@@ -95,6 +98,7 @@ gulp.task('serve', ['build'], function(done) {
 
 gulp.task('css', function () {
     return gulp.src(path.css)
+        .pipe(gulp.dest(path.output + 'css'))
         .pipe(reload({stream:true}));
 });
 

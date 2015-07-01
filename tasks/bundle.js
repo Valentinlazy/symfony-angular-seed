@@ -4,7 +4,7 @@ var gulp = require('gulp'),
   exec = require('gulp-exec'),
   useref = require('gulp-useref'),
   preprocess = require('gulp-preprocess'),
-  NODE_ENV = process.env.NODE_ENV || 'development',
+  NODE_ENV = process.env.NODE_ENV || 'production',
   path;
 
 module.exports = function (_path_) {
@@ -17,7 +17,7 @@ gulp.task('clean-bundle', function (done) {
 
 gulp.task('bundle-app', function () {
   console.log('jspm bundle-sfx ' + path.appmodule + ' ' + path.bundle + 'app.js');
-  return gulp.src('app/Resources/front/src/app.js')
+  return gulp.src(path.source+'/app.js')
     .pipe(exec('jspm bundle-sfx ' + path.appmodule + ' ' + path.bundle + 'app.js'))
     .pipe(exec.reporter());
 });
@@ -34,13 +34,13 @@ gulp.task('bundle-css', function () {
 
 gulp.task('bundle-templates', function () {
   return gulp.src(path.source + '/**/*.html')
-    .pipe(gulp.dest(path.bundle + 'dist'));
+    .pipe(gulp.dest(path.output));
 });
 
 gulp.task('bundle-index', function () {
   var assets = useref.assets();
 
-  return gulp.src(['web/index.html'])
+  return gulp.src([path.source+ '/../index.html'])
     .pipe(preprocess({
       context: {
         NODE_ENV: 'production'
@@ -49,7 +49,7 @@ gulp.task('bundle-index', function () {
     .pipe(assets)
     .pipe(assets.restore())
     .pipe(useref())
-    .pipe(gulp.dest(path.bundle));
+    .pipe(gulp.dest(path.output));
 });
 
 gulp.task('bundle-statics', function () {
