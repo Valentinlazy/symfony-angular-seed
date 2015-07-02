@@ -3,6 +3,7 @@
 app_name: callback
 app_user: callback
 app_database_password: callback
+app_config_dir: /vagrant/api/app/config
 
 server:
     install: '1'

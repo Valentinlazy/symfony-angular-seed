@@ -4,7 +4,7 @@
 - name: Copy local configs
   template: >
     src=templates/symfony/parameters.yml.j2
-    dest={{api_parameters_dir}}/parameters.yml
+    dest={{app_config_dir}}/parameters.yml
 
 - name: install vendors
   composer: command=install working_dir=/vagrant no_dev=no
