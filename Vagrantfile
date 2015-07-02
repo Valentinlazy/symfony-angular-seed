@@ -68,13 +68,13 @@ Vagrant.configure("2") do |config|
             ansible.limit = 'all'
         end
     else
-        config.vm.provision :shell, path: "ansible/windows.sh", args: ["callback"]
+        config.vm.provision :shell, path: "ansible/windows.sh", args: ["callback.vagrant"]
     end
 
     config.vm.synced_folder(
         ".", "/vagrant",
         type: "nfs",
-        mount_options:  %w(rw vers=3 tcp fsc actimeo=2)
+        mount_options:  %w(rw vers=3 udp fsc actimeo=2)
     )
 
 	config.hostmanager.enabled = true
