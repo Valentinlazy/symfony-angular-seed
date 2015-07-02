@@ -28,3 +28,11 @@
 - name: Set default system language pack
   shell: locale-gen "{{server.locale}}"
   sudo: yes
+
+- name: Set default locale
+  lineinfile: dest=/etc/default/locale
+              regexp="{{item.key}}"
+              line="{{item.key}}=\"{{item.value}}\""
+  with_dict:
+      LC_ALL: "{{server.locale}}"
+      LC_LANG: "{{server.locale}}"
