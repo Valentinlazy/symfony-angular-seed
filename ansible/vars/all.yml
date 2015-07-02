@@ -1,4 +1,9 @@
 ---
+
+app_name: callback
+app_user: callback
+app_database_password: callback
+
 server:
     install: '1'
     packages: [git, htop, imagemagick]
@@ -14,9 +19,9 @@ apache:
 mysql:
     install: '1'
     root_password: root
-    database: callback
-    user: callback
-    password: callback
+    database:  "{{app_name}}"
+    user:  "{{app_user}}"
+    password: "{{app_database_password}}"
     dump: ''
 php:
     install: '1'
@@ -26,3 +31,14 @@ xdebug:
     install: '1'
 composer:
     install: '1'
+
+postgresql_version: 9.4
+
+postgresql_databases:
+    - name: "{{app_name}}_db"
+    - name: "{{app_name}}_db_test"
+
+postgresql_users:
+    - name: "{{app_user}}"
+      pass: "{{app_database_password}}"
+      encrypted: no
