@@ -1,10 +1,10 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "license": "MIT",
+    "name": "rozumsoft/callback",
+    "license": "proprietary",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "Callback service",
     "autoload": {
-        "psr-4": { "": "src/", "SymfonyStandard\\": "app/SymfonyStandard/" }
+        "psr-4": { "Callback\\": "src/" }
     },
     "require": {
         "php": ">=5.5",
