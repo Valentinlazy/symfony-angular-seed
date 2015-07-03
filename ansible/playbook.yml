@@ -8,7 +8,6 @@
     - nodejs
     - vagrant_local
     - apache
-    #- mysql
     - galaxy/ANXS.postgresql
     - php
     - xdebug

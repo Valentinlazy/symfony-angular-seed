@@ -31,6 +31,7 @@ def require_plugin(name)
 end
 
 require_plugin 'vagrant-hostmanager'
+require_plugin 'vagrant-host-shell'
 
 Vagrant.configure("2") do |config|
 
@@ -62,6 +63,12 @@ Vagrant.configure("2") do |config|
 
     
     if which('ansible-playbook')
+        # Handle ansible galaxy roles
+        if File.exist?("#{galaxy_roles_file}")
+          config.vm.provision :host_shell do |host_shell|
+              host_shell.inline = "ansible-galaxy install -r #{galaxy_roles_file} -p #{ansible_dir}/roles/galaxy -f"
+          end
+        end
         config.vm.provision "ansible" do |ansible|
             ansible.playbook = "ansible/playbook.yml"
             ansible.limit = 'all'
@@ -76,13 +83,6 @@ Vagrant.configure("2") do |config|
         nfs_udp: true,
         nfs_version: 3
     )
-
-  # Handle ansible galaxy roles
-  if File.exist?("#{galaxy_roles_file}")
-      config.vm.provision :host_shell do |host_shell|
-          host_shell.inline = "ansible-galaxy install -r #{galaxy_roles_file} -p #{ansible_dir}/roles/galaxy -f"
-      end
-  end
 
 	config.hostmanager.enabled = true
 	config.hostmanager.manage_host = true

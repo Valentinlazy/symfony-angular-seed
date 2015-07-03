@@ -12,6 +12,7 @@ var gulp = require('gulp'),
   sourcemaps = require('gulp-sourcemaps'),
   del = require('del'),
   preprocess = require('gulp-preprocess'),
+  ngAnnotate = require('gulp-ng-annotate'),
   NODE_ENV = process.env.NODE_ENV || 'development';
 
 var path;
@@ -38,6 +39,7 @@ gulp.task('build-system', function () {
     .pipe(changed(path.output, {extension: '.js'}))
     .pipe(sourcemaps.init())
     .pipe(to5(assign({}, compilerOptions, {modules:'system'})))
+    .pipe(ngAnnotate())
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest(path.output))
     .pipe(browserSync.reload({ stream: true }));
@@ -62,7 +64,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('clean-dist', function (done) {
-  del('dist', done);
+  del(['web/app.js*', 'web/components', 'web/config', 'web/css', 'web/pages', 'web/index.html'], done);
 });
 
 gulp.task('build', function(callback) {

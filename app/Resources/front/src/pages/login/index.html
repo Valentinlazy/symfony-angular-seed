@@ -1,0 +1,28 @@
+<div class="login-box" ng-controller="LoginCtrl">
+    <div class="login-logo">
+        <b>Callback</b>
+    </div><!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+        <form ng-submit="submit()">
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control" placeholder="Email" autocomplete="off" ng-model="model.email">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Password" autocomplete="off" ng-model="model.password">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p ng-if="formErrors">{{formErrors}}</p>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div><!-- /.col -->
+            </div>
+        </form>
+
+        <a href="#">I forgot my password</a><br>
+        <a href="#" class="text-center">Register a new membership</a>
+
+    </div><!-- /.login-box-body -->
+</div>

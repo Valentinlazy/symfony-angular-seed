@@ -4,6 +4,8 @@ var gulp = require('gulp'),
   exec = require('gulp-exec'),
   useref = require('gulp-useref'),
   preprocess = require('gulp-preprocess'),
+  ngAnnotate = require('gulp-ng-annotate'),
+  jspm = require('jspm'),
   NODE_ENV = process.env.NODE_ENV || 'production',
   path;
 
@@ -12,11 +14,14 @@ module.exports = function (_path_) {
 };
 
 gulp.task('clean-bundle', function (done) {
-  del('bundle', done);
+  del(['web/app.js*', 'web/components', 'web/config', 'web/css', 'web/fonts', 'web/vendors', 'web/pages', 'web/index.html'], done);
 });
 
 gulp.task('bundle-app', function () {
   console.log('jspm bundle-sfx ' + path.appmodule + ' ' + path.bundle + 'app.js');
+  //return jspm.bundleSFX(path.appmodule, path.bundle + 'app.js')
+  //  .then(exec.reporter())
+  //  .catch(exec.reporter());
   return gulp.src(path.source+'/app.js')
     .pipe(exec('jspm bundle-sfx ' + path.appmodule + ' ' + path.bundle + 'app.js'))
     .pipe(exec.reporter());
@@ -30,6 +35,11 @@ gulp.task('bundle-systemjs', function () {
 gulp.task('bundle-css', function () {
   return gulp.src(path.css)
     .pipe(gulp.dest(path.bundle + 'css'));
+});
+
+gulp.task('bundle-fonts', function () {
+  return gulp.src('jspm_packages/github/twbs/bootstrap@3.3.4/fonts/*')
+    .pipe(gulp.dest(path.output+'fonts'));
 });
 
 gulp.task('bundle-templates', function () {
@@ -53,7 +63,7 @@ gulp.task('bundle-index', function () {
 });
 
 gulp.task('bundle-statics', function () {
-  runSequence(['css', 'build-html'], ['bundle-templates', 'bundle-systemjs', 'bundle-index']);
+  runSequence(['css', 'build-html'], ['bundle-templates', 'bundle-systemjs', 'bundle-index', 'bundle-fonts']);
 });
 
 gulp.task('bundle', function () {

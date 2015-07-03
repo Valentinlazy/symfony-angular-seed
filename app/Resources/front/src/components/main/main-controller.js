@@ -1,14 +1,7 @@
-import {controller, inject, injectAs} from '../../config/decorators';
 
-/* jshint ignore:start */
-@controller
-@inject('$scope')
-/* jshint ignore:end */
-export class MainCtrl {
-  /* jshint ignore:start */
-  @injectAs('FlickrService') service = null;
-  /* jshint ignore:end */
+export default class MainCtrl {
+  /*@ngInject*/
   constructor($scope) {
-    this.searchTag = 'AngularJS';
+
   }
 }

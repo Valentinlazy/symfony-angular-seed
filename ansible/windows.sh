@@ -28,4 +28,8 @@ sudo apt-get install -y ansible
 cp /vagrant/ansible/inventories/dev /etc/ansible/hosts -f
 chmod 666 /etc/ansible/hosts
 cat /vagrant/ansible/files/authorized_keys >> /home/vagrant/.ssh/authorized_keys
+if [ "/vagrant/ansible/galaxy_roles.yml" -f ];
+then
+    ansible-galaxy install -r /vagrant/ansible/galaxy_roles.yml -p /vagrant/ansible/roles/galaxy -f
+fi
 sudo ansible-playbook /vagrant/ansible/playbook.yml -e hostname=$1 --connection=local
