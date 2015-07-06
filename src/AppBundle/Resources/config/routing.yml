@@ -1,0 +1,8 @@
+### User
+app_user:
+    resource: AppBundle\Controller\UserController
+    type:     rest
+
+app_session:
+    resource: AppBundle\Controller\SessionController
+    type:     rest

@@ -1,8 +1,0 @@
-### User
-app_user:
-    resource: AppBundle\Controller\Front\UserController
-    type:     rest
-
-app_session:
-    resource: AppBundle\Controller\Front\SessionController
-    type:     rest

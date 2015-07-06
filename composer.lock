@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2f65a04f30d6ea6f0c513a75a70acbd2",
+    "hash": "6a53bb74c0fe7a7f18dec55d1c77aaae",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2436,12 +2436,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "0bfb190eded29d2022e7a31656d1425ed54a6a9f"
+                "reference": "8b0f9a333621e51502ebc58fab1e5def76c6e69b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/0bfb190eded29d2022e7a31656d1425ed54a6a9f",
-                "reference": "0bfb190eded29d2022e7a31656d1425ed54a6a9f",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/8b0f9a333621e51502ebc58fab1e5def76c6e69b",
+                "reference": "8b0f9a333621e51502ebc58fab1e5def76c6e69b",
                 "shasum": ""
             },
             "require": {
@@ -2487,7 +2487,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2015-07-01 18:17:20"
+            "time": "2015-07-02 20:11:20"
         },
         {
             "name": "sebastian/diff",
