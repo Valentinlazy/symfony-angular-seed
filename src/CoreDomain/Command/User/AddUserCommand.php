@@ -36,7 +36,7 @@ class AddUserCommand implements CommandInterface
         if (count($validationErrors = $this->validator->validate($user)) > 0) {
             throw new ValidationException('Bad request', $validationErrors);
         }
-        
+
         $this->repository->addAndSave($user);
 
         return $user;

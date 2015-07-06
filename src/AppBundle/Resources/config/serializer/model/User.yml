@@ -16,4 +16,3 @@ CoreDomain\Model\User:
             type: array
             groups:
                 - api_user_get
-                
