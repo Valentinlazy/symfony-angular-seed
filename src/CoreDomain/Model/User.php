@@ -2,6 +2,7 @@
 
 namespace CoreDomain\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 class User implements AdvancedUserInterface
@@ -12,6 +13,7 @@ class User implements AdvancedUserInterface
 
     private $salt;
     private $roles;
+    private $sessions;
 
     public function __construct($email, Password $password, array $roles = ['ROLE_USER'])
     {
@@ -19,6 +21,7 @@ class User implements AdvancedUserInterface
         $this->password = $password->getPassword();
         $this->salt = $password->getSalt();
         $this->roles = $roles;
+        $this->sessions = new ArrayCollection();
     }
 
     public function login()
@@ -79,5 +82,13 @@ class User implements AdvancedUserInterface
     public function eraseCredentials()
     {
 
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSessions()
+    {
+        return $this->sessions;
     }
 }

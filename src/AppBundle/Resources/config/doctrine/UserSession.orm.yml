@@ -17,6 +17,7 @@ CoreDomain\Model\UserSession:
     manyToOne:
         user:
             targetEntity: CoreDomain\Model\User
+            inversedBy: sessions
             joinColumn:
                 name: user_id
                 referencedColumnName: id

@@ -19,3 +19,7 @@ CoreDomain\Model\User:
             nullable: false
         roles:
             type: array
+    oneToMany:
+        sessions:
+            targetEntity: CoreDomain\Model\UserSession
+            mappedBy: user

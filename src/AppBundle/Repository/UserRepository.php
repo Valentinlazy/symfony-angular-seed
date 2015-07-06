@@ -45,15 +45,15 @@ class UserRepository implements UserRepositoryInterface
             ->getOneOrNullResult();
     }
 
-    public function findOneByToken($token)
+    public function findOneByToken($token, $expirePeriod = 'P7D')
     {
-        //TODO - use userSession Repository
         $validCreatedAt = new \DateTime();
-        $validCreatedAt->sub(new \DateInterval('PT7d'));
+        $validCreatedAt->sub(new \DateInterval($expirePeriod));
 
         return $this->em->createQueryBuilder()
-            ->select('s.user')
-            ->from(UserSession::class, 's')
+            ->select('u')
+            ->from(User::class, 'u')
+            ->innerJoin('u.sessions', 's')
             ->where('s.token = :token')
             ->andWhere('s.createdAt > :date')
             ->setParameter('token', $token)
