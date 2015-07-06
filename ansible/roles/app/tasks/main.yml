@@ -21,3 +21,13 @@
 
 - name: build frontend
   shell: gulp bundle chdir=/vagrant
+
+- name: clear cache
+  shell: "php app/console cache:clear"
+  args:
+    chdir: "/vagrant"
+
+- name: import migrations
+  shell: "php app/console doctrine:migrations:migrate -n"
+  args:
+    chdir: "/vagrant"
