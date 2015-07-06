@@ -6,12 +6,8 @@ CoreDomain\DTO\UserDTO:
         email:
             expose: true
             type: string
-            groups:
-                - api_user_post
-                  api_session_post
+            groups: [api_user_post, api_session_post]
         password:
             expose: true
             type: string
-            groups:
-                - api_user_post
-                  api_session_post
+            groups: [api_user_post, api_session_post]
