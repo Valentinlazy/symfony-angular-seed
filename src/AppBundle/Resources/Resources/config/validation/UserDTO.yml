@@ -1,0 +1,10 @@
+CoreDomain\DTO\UserDTO:
+    properties:
+        email:
+            - Email:
+                groups: [api_user_post, api_session_post]
+            - NotBlank:
+                groups: [api_user_post, api_session_post]
+        password:
+            - NotBlank:
+                groups: [api_user_post, api_session_post]

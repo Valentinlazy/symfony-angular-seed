@@ -1,0 +1,17 @@
+CoreDomain\Model\UserSession:
+    exclusion_policy: ALL
+    properties:
+        token:
+            expose: true
+            groups:
+                - api_session_get
+        createdAt:
+            expose: true
+            groups:
+                - api_session_get
+    virtual_properties:
+        getUserId:
+            serialized_name: user_id
+            type: integer
+            groups:
+                - api_session_get

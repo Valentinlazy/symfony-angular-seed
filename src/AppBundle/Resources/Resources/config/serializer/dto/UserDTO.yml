@@ -1,0 +1,13 @@
+CoreDomain\DTO\UserDTO:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        email:
+            expose: true
+            type: string
+            groups: [api_user_post, api_session_post]
+        password:
+            expose: true
+            type: string
+            groups: [api_user_post, api_session_post]

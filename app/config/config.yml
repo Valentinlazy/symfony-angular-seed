@@ -77,7 +77,7 @@ doctrine:
         mappings:
             CoreDomain:
                 type: yml
-                prefix: Callback\CoreDomain\Model
+                prefix: CoreDomain\Model
                 dir: %kernel.root_dir%/../src/AppBundle/Resources/config/doctrine
                 is_bundle: false
 
@@ -95,7 +95,7 @@ jms_serializer:
         auto_detection: false
         directories:
             app_model_serializer:
-                namespace_prefix: "Callback\\CoreDomain\\Model"
+                namespace_prefix: "CoreDomain\\Model"
                 path: "@AppBundle/Resources/config/serializer/model"
 
 fos_rest:

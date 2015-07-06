@@ -7,3 +7,51 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    app.security.api_user_provider:
+        class: AppBundle\Security\User\ApiUserProvider
+        arguments:
+            - @app.repository.user
+
+    app.security.api_token_authenticator:
+        class: AppBundle\Security\Authentication\ApiTokenAuthenticator
+        arguments: [@app.security.api_user_provider]
+
+    app.security.user_password_encoder:
+        class: AppBundle\Security\User\UserPasswordEncoder
+        arguments: ["@security.encoder_factory", "\CoreDomain\\Model\\User"]
+
+    app.command_handler:
+        class: CoreDomain\Handler\CommandHandler
+
+    ### Repository
+    app.repository.user:
+        class: AppBundle\Repository\UserRepository
+        arguments: [@doctrine.orm.entity_manager]
+
+    app.repository.user_session:
+        class: AppBundle\Repository\UserSessionRepository
+        arguments: [@doctrine.orm.entity_manager]
+
+    app.repository.shop:
+        class: AppBundle\Repository\Shop\ShopRepository
+        arguments: [@doctrine.orm.entity_manager]
+
+    ### Commands
+    app.command.add_user:
+        class: CoreDomain\Command\User\AddUserCommand
+        arguments: [@app.repository.user, @app.security.user_password_encoder, @validator]
+
+    app.command.add_session:
+        class: CoreDomain\Command\User\AddSessionCommand
+        arguments: [@app.repository.user, @app.repository.user_session, @app.security.user_password_encoder]
+
+    app.command.add_shop:
+        class: CoreDomain\Command\Shop\AddShopCommand
+        arguments: [@app.repository.shop ]
+
+    ### Listeners
+    app.kernel.exception.listener:
+        class: AppBundle\Listener\KernelExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onDomainException }

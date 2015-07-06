@@ -1,0 +1,21 @@
+CoreDomain\Model\User:
+    type: entity
+    table: user
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        email:
+            type: string
+            length: 255
+            unique: true
+        password:
+            type: string
+            length: 255
+        salt:
+            type: string
+            length: 255
+            nullable: false
+        roles:
+            type: array
