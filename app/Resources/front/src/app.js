@@ -5,17 +5,17 @@ import 'angular-cookies';
 
 import configModule from './config/config';
 import {appName} from './config/constants';
-import MainComponent from './components/main/index';
 import authModule from './components/auth/index';
-import LoginComponent from './pages/login/index';
+import LoginPage from './pages/login/index';
+import DashboardPage from './pages/dashboard/index';
 
 var app = angular.module(appName, [
   'angularLocalStorage',
   'ui.router',
   authModule.name,
   configModule.name,
-  MainComponent.name,
-  LoginComponent.name
+  LoginPage.name,
+  DashboardPage.name
 ])
   .run(($rootScope, $state, auth, $location) => {
 
@@ -35,7 +35,6 @@ var app = angular.module(appName, [
     });
 
     $rootScope.$on('api.access_denied', () => {
-      auth.signout();
       $location.path("/login");
     });
 
