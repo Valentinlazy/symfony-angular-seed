@@ -31,6 +31,7 @@ class ApiProvider {
     methods.defaults = {
       requestTransformer: [],
       responseTransformer: [],
+      withCredentials: true,
       headers: {
         'Content-Type': 'application/json'
       }
