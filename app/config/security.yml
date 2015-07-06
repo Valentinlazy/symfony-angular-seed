@@ -1,13 +1,33 @@
 security:
+    encoders:
+        CoreDomain\Model\User:
+            algorithm: bcrypt
+            cost: 13
+
+    role_hierarchy:
+        ROLE_SHOP_OWNER: [ROLE_USER]
+        ROLE_ADMIN: [ROLE_SHOP_OWNER]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
     providers:
-        in_memory:
-            memory: ~
+        api_provider:
+            id: app.security.api_user_provider
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
-
-        main:
+        api:
+            pattern: ^/api
+            provider: api_provider
+            stateless: true
             anonymous: ~
+            simple_preauth:
+                authenticator: app.security.api_token_authenticator
+        default:
+            anonymous: ~
+
+    access_control:
+        - { path: /api/(sessions|users), roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
+        - { path: /api/users/reset, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/users, role: ROLE_USER }

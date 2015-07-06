@@ -19,7 +19,7 @@ services:
 
     app.security.user_password_encoder:
         class: AppBundle\Security\User\UserPasswordEncoder
-        arguments: ["@security.encoder_factory", "\CoreDomain\\Model\\User"]
+        arguments: [@security.encoder_factory.generic, "\CoreDomain\\Model\\User"]
 
     app.command_handler:
         class: CoreDomain\Handler\CommandHandler
@@ -27,15 +27,11 @@ services:
     ### Repository
     app.repository.user:
         class: AppBundle\Repository\UserRepository
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: [@doctrine.orm.default_entity_manager]
 
     app.repository.user_session:
         class: AppBundle\Repository\UserSessionRepository
-        arguments: [@doctrine.orm.entity_manager]
-
-    app.repository.shop:
-        class: AppBundle\Repository\Shop\ShopRepository
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: [@doctrine.orm.default_entity_manager]
 
     ### Commands
     app.command.add_user:
@@ -45,10 +41,6 @@ services:
     app.command.add_session:
         class: CoreDomain\Command\User\AddSessionCommand
         arguments: [@app.repository.user, @app.repository.user_session, @app.security.user_password_encoder]
-
-    app.command.add_shop:
-        class: CoreDomain\Command\Shop\AddShopCommand
-        arguments: [@app.repository.shop ]
 
     ### Listeners
     app.kernel.exception.listener:

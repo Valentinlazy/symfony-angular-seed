@@ -81,6 +81,12 @@ doctrine:
                 dir: %kernel.root_dir%/../src/AppBundle/Resources/config/doctrine
                 is_bundle: false
 
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/migrations
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -97,8 +103,13 @@ jms_serializer:
             app_model_serializer:
                 namespace_prefix: "CoreDomain\\Model"
                 path: "@AppBundle/Resources/config/serializer/model"
+            app_dto_serializer:
+                namespace_prefix: "CoreDomain\\DTO"
+                path: "@AppBundle/Resources/config/serializer/dto"
 
 fos_rest:
+    serializer:
+        serialize_null: true
     body_converter:
         enabled: true
         validate: true

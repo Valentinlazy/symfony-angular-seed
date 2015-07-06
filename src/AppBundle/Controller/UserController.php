@@ -37,7 +37,10 @@ class UserController extends Controller
         );
     }
 
-    // TODO - candidate for refactoring
+    /**
+     * @Rest\Get("/users/{id}")
+     * @Rest\View(serializerGroups="api_user_get", statusCode=201)
+     */
     public function getUserAction(User $user)
     {
         if ($this->getUser()->getId() !== $user->getId()) {
