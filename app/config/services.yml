@@ -19,7 +19,7 @@ services:
 
     app.security.user_password_encoder:
         class: AppBundle\Security\User\UserPasswordEncoder
-        arguments: [@security.encoder_factory.generic, "\CoreDomain\\Model\\User"]
+        arguments: [@security.encoder_factory.generic, "CoreDomain\\Model\\User"]
 
     app.command_handler:
         class: CoreDomain\Handler\CommandHandler

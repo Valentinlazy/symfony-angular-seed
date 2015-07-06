@@ -1,6 +1,6 @@
 CoreDomain\Model\User:
     type: entity
-    table: user
+    table: users
     id:
         id:
             type: integer
