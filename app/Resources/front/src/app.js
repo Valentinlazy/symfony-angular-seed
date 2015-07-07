@@ -3,7 +3,6 @@ import 'angular-ui-router';
 import 'storage';
 import 'angular-cookies';
 
-import configModule from './config/config';
 import {appName} from './config/constants';
 import authModule from './components/auth/index';
 import LoginPage from './pages/login/index';
@@ -14,11 +13,17 @@ var app = angular.module(appName, [
   'angularLocalStorage',
   'ui.router',
   authModule.name,
-  configModule.name,
   LoginPage.name,
   RegisterPage.name,
   DashboardPage.name
 ])
+  .config(($httpProvider, $urlRouterProvider, $locationProvider) => {
+    $httpProvider.defaults.withCredentials = true;
+    $httpProvider.interceptors.push('authInterceptor');
+
+    $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise('/dashboard');
+  })
   .run(($rootScope, $state, auth, $location) => {
 
     $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
