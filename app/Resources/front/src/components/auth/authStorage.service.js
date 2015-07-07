@@ -1,5 +1,5 @@
 const STORAGE_TOKEN_NAME = 'CALLBACK.AUTH_TOKEN';
-const STORAGE_EMAIL_NAME = 'CALLBACK.AUTH_EMAIL';
+const STORAGE_USER_NAME = 'CALLBACK.AUTH_USER';
 
 class AuthStorage {
   /*@ngInject*/
@@ -19,21 +19,21 @@ class AuthStorage {
     this.storage.remove(STORAGE_TOKEN_NAME);
   }
 
-  setUserEmail(_email) {
-    this.storage.set(STORAGE_EMAIL_NAME, _email);
+  setUserId(_id) {
+    this.storage.set(STORAGE_USER_NAME, _id);
   }
 
-  getUserEmail() {
-    return this.storage.get(STORAGE_EMAIL_NAME);
+  getUserId() {
+    return this.storage.get(STORAGE_USER_NAME);
   }
 
-  removeUserEmail() {
-    this.storage.remove(STORAGE_EMAIL_NAME);
+  removeUserId() {
+    this.storage.remove(STORAGE_USER_NAME);
   }
 
   clear() {
     this.removeAuthToken();
-    this.removeUserEmail();
+    this.removeUserId();
   }
 }
 

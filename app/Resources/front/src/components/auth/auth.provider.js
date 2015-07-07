@@ -7,10 +7,10 @@ class AuthProvider {
 
     ['signin', 'signup', 'forgotPassword'].forEach((_method) => {
       var methodData = _method + 'Data';
-      authStorage.clear();
 
       methods[_method] = (_model) => {
         if (_model instanceof AuthModel) {
+          authStorage.clear();
           return authApi[_method](_model[methodData]).then(successCallback, errorCallback);
         }
 
@@ -18,8 +18,8 @@ class AuthProvider {
       };
     });
 
-    methods.signout = () => authStorage.clear();
-    methods.isAuthenticated = () => !!authStorage.getUserEmail();
+    methods.signout = () => {authStorage.clear()};
+    methods.isAuthenticated = () => {!!authStorage.getAuthToken()};
     methods.getAuthUser = getUser;
 
     return methods;
@@ -28,16 +28,16 @@ class AuthProvider {
 
     function getUser() {
       return {
-        email: authStorage.getUserEmail()
+        id: authStorage.getUserId()
       };
     }
 
     function successCallback(_result) {
       // handle success result here
       // result is an object of response which contains 'apiKey' property
-      if (204 !== _result.status && _result.apiKey && _result.email) {
-        authStorage.setAuthToken(_result.apiKey);
-        authStorage.setUserEmail(_result.email);
+      if (204 !== _result.status && _result.token) {
+        authStorage.setAuthToken(_result.token);
+        authStorage.setUserId(_result.user_id);
       }
 
       return _result;

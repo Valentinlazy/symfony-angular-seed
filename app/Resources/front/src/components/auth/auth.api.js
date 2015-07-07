@@ -15,7 +15,7 @@ class AuthApi {
   }
 
   signin(_data) {
-    return this.api.post('session', {
+    return this.api.post('sessions', {
       email: _data.email,
       password: _data.password
     });
