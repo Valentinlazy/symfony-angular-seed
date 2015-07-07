@@ -11,6 +11,15 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
+nelmio_cors:
+   paths:
+    '^/api/':
+        allow_credentials: true
+        allow_origin: ['*']
+        allow_headers: ['origin', 'content-type', 'X-Custom-Auth']
+        allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'PATCH', 'OPTIONS']
+        max_age: 3600
+
 monolog:
     handlers:
         main:
