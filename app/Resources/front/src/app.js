@@ -7,6 +7,7 @@ import configModule from './config/config';
 import {appName} from './config/constants';
 import authModule from './components/auth/index';
 import LoginPage from './pages/login/index';
+import RegisterPage from './pages/register/index';
 import DashboardPage from './pages/dashboard/index';
 
 var app = angular.module(appName, [
@@ -15,6 +16,7 @@ var app = angular.module(appName, [
   authModule.name,
   configModule.name,
   LoginPage.name,
+  RegisterPage.name,
   DashboardPage.name
 ])
   .run(($rootScope, $state, auth, $location) => {
@@ -26,8 +28,8 @@ var app = angular.module(appName, [
       $rootScope.previousState = {state: fromState, stateParams: fromParams};
 
       let allowAnonymous = (
-      typeof toState.access === 'undefined' ||
-      typeof toState.access.allowAnonymous === 'undefined') ? true : toState.access.allowAnonymous;
+        typeof toState.access === 'undefined' ||
+        typeof toState.access.allowAnonymous === 'undefined') ? true : toState.access.allowAnonymous;
 
       if (!allowAnonymous && !auth.isAuthenticated()) {
         $location.path("/login");

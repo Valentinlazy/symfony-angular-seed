@@ -88,7 +88,7 @@ gulp.task('serve', ['build'], function(done) {
             req.url === 'index.html') {
           req.url = '/index.html';
         }
-        if(!req.url.match(/^\/?(jspm|config\.js|browser-sync)/)) {
+        if(!req.url.match(/^\/?(jspm|config\.js|browser-sync|app\/Resources)/)) {
           req.url = '/web/' + req.url;
         }
         res.setHeader('Access-Control-Allow-Origin', '*');
