@@ -8,3 +8,6 @@ CoreDomain\DTO\UserDTO:
         password:
             - NotBlank:
                 groups: [api_user_post, api_session_post]
+            - Length:
+                min: 6
+                groups: [api_user_post, api_session_post]
