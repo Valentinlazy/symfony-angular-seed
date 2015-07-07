@@ -101,8 +101,12 @@ jms_serializer:
                 path: "@AppBundle/Resources/config/serializer/dto"
 
 fos_rest:
+    service:
+        serializer: jms_serializer.serializer
     serializer:
         serialize_null: true
+    param_fetcher_listener: true
+    body_listener: true
     body_converter:
         enabled: true
         validate: true

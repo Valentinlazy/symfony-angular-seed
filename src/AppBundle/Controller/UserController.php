@@ -9,6 +9,7 @@ use CoreDomain\Model\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class UserController extends Controller
@@ -47,6 +48,42 @@ class UserController extends Controller
             throw new AccessDeniedException();
         }
         return $user;
+    }
+
+    /**
+     * @Rest\Patch("/users/{id}")
+     * @Rest\View(serializerGroups="api_user_get", statusCode=200)
+     * @ParamConverter(
+     *      "userDTO",
+     *      converter="fos_rest.request_body",
+     *      options={
+     *          "deserializationContext"={"groups"="api_user_patch"},
+     *          "validator"={"groups"={"api_user_patch"}}
+     *      }
+     * )
+     */
+    public function updateProfileAction(User $user, UserDTO $userDTO, ConstraintViolationListInterface $validationErrors)
+    {
+        if (count($validationErrors) > 0) {
+            throw new ValidationException('Bad request', $validationErrors);
+        }
+
+        return $this
+            ->get('app.command.update_profile_user')
+            ->execute((object)['user' => $user, 'userDTO' => $userDTO])
+        ;
+    }
+
+    /**
+     * @Rest\Post("/users/reset")
+     * @Rest\View(statusCode=204)
+     */
+    public function resetPasswordAction(Request $request)
+    {
+        $this
+            ->get('app.command.reset_password_user')
+            ->execute((object)['email' => $request->get('email')])
+        ;
     }
 
 }

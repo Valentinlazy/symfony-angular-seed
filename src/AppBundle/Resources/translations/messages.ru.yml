@@ -1,0 +1,8 @@
+resetting:
+    email:
+        subject: Восстановление паролся. Callback
+        message: |
+           Добрый день.
+
+           Ваш пароль от сервиса Callback был сброшен.
+           Новый пароль %password%

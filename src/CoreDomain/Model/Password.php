@@ -15,10 +15,13 @@ class Password
 
     private $encoder;
 
-    public function __construct(PasswordStrategyInterface $encoder, $password)
+    public function __construct(PasswordStrategyInterface $encoder, $password = '')
     {
         $this->encoder = $encoder;
         $this->plainPassword = $password;
+        if (!$password){
+            $this->generatePassword();
+        }
         $this->generateSalt();
     }
 

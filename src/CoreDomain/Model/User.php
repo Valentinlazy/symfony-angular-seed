@@ -14,6 +14,7 @@ class User implements AdvancedUserInterface
     private $salt;
     private $roles;
     private $sessions;
+    private $fullName;
 
     public function __construct($email, Password $password, array $roles = ['ROLE_USER'])
     {
@@ -27,6 +28,12 @@ class User implements AdvancedUserInterface
     public function login()
     {
         return new UserSession($this);
+    }
+
+    public function changePassword(Password $password)
+    {
+        $this->password = $password->getPassword();
+        $this->salt = $password->getSalt();
     }
 
     public function getId()
@@ -82,6 +89,11 @@ class User implements AdvancedUserInterface
     public function eraseCredentials()
     {
 
+    }
+
+    public function getFullName()
+    {
+        return $this->fullName;
     }
 
     /**

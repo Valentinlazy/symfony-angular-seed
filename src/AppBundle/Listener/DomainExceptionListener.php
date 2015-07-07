@@ -8,7 +8,7 @@ use CoreDomain\Exception\ValidationException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 
-class KernelExceptionListener
+class DomainExceptionListener
 {
     public function onDomainException(GetResponseForExceptionEvent $event)
     {

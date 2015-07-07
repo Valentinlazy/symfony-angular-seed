@@ -1,13 +1,8 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
 parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-
+    ### Services
     app.security.api_user_provider:
         class: AppBundle\Security\User\ApiUserProvider
         arguments:
@@ -23,6 +18,14 @@ services:
 
     app.command_handler:
         class: CoreDomain\Handler\CommandHandler
+
+    app.messenger:
+        class: AppBundle\Infrastructure\Mail\Messenger
+        arguments:
+            - @mailer
+            - @templating
+            - @translator
+            - %mailer_from%
 
     ### Repository
     app.repository.user:
@@ -42,8 +45,23 @@ services:
         class: CoreDomain\Command\User\AddSessionCommand
         arguments: [@app.repository.user, @app.repository.user_session, @app.security.user_password_encoder]
 
+    app.command.reset_password_user:
+        class: CoreDomain\Command\User\ResetPasswordCommand
+        arguments: [@app.repository.user, @app.security.user_password_encoder, @app.messenger]
+
+    app.command.update_profile_user:
+        class: CoreDomain\Command\User\UpdateProfileCommand
+        arguments: [@app.repository.user]
+
     ### Listeners
-    app.kernel.exception.listener:
-        class: AppBundle\Listener\KernelExceptionListener
+    app.domain.exception.listener:
+        class: AppBundle\Listener\DomainExceptionListener
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onDomainException }
+
+    app.mailer.queue.listener:
+        class: AppBundle\Listener\MailerQueueListener
+        arguments:
+            - @app.messenger
+        tags:
+            - { name: kernel.event_listener, event: kernel.terminate, method: onKernelTerminate }
