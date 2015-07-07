@@ -1,0 +1,22 @@
+---
+
+- name: Install dependencies for compiling node-gyp
+  action: apt pkg="{{ item }}" state=present
+  with_items:
+    - make
+    - g++
+
+- name: Install maildev
+  npm: name=maildev global=yes state=present
+
+- name: Create startup script for maildev
+  template: src=maildev.conf.j2 dest=/etc/init/maildev.conf mode=0755
+  notify: restart maildev
+
+# Upstart alone is not working in docker.
+- name: Create init script for maildev
+  template: src=etc-init.d-maildev.j2 dest=/etc/init.d/maildev mode=0755
+  notify: restart maildev
+
+- name: Add init script to startup
+  service: name=maildev state=started enabled=yes

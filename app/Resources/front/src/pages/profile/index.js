@@ -1,9 +1,8 @@
 import angular from 'angular';
 import {appName} from '../../config/constants';
 import ProfileController from './profile-controller';
-import UserComponent from '../../components/user/index';
 
-let ProfileComponent = angular.module(`${appName}.profile`, [UserComponent.name])
+let ProfileComponent = angular.module(`${appName}.profile`, [])
     .controller('ProfileCtrl', ProfileController)
     .config(($stateProvider) => {
       $stateProvider
@@ -11,10 +10,7 @@ let ProfileComponent = angular.module(`${appName}.profile`, [UserComponent.name]
           url:'/profile',
           controller: 'ProfileCtrl',
           access: {allowAnonymous: false},
-          templateUrl: '/pages/profile/index.html',
-          resolve: {
-            model: (userService) => userService.getProfile()
-          }
+          templateUrl: '/pages/profile/index.html'
         })
       ;
     })

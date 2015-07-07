@@ -5,6 +5,7 @@ import 'angular-cookies';
 
 import {appName} from './config/constants';
 import authModule from './components/auth/index';
+import UserComponent from './components/user/index';
 import LoginPage from './pages/login/index';
 import RegisterPage from './pages/register/index';
 import ResetPasswordPage from './pages/reset-password/index';
@@ -17,6 +18,7 @@ var app = angular.module(appName, [
   LoginPage.name,
   RegisterPage.name,
   ResetPasswordPage.name,
+  UserComponent.name,
   DashboardPage.name
 ])
   .config(($httpProvider, $urlRouterProvider, $locationProvider) => {

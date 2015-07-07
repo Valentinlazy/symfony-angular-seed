@@ -1,0 +1,3 @@
+---
+maildev_smtp_port: 1025   # Set the ip address of the smtp server
+maildev_http_port: 1080   # Set the port address of the http server

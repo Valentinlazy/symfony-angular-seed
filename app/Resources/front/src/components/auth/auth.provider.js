@@ -18,8 +18,8 @@ class AuthProvider {
       };
     });
 
-    methods.signout = () => {authStorage.clear()};
-    methods.isAuthenticated = () => {return !!authStorage.getAuthToken()};
+    methods.signout = () => authStorage.clear();
+    methods.isAuthenticated = () => !!authStorage.getAuthToken();
     methods.getAuthUser = getUser;
 
     return methods;

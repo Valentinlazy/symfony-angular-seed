@@ -5,6 +5,7 @@ app_user: callback
 app_database_password: callback
 app_config_dir: /vagrant/app/config
 app_secret_key: "BM3L9938BRkLvGEE2UKNvtjSZ1"
+maildev_smtp_port: 25
 
 server:
     install: '1'

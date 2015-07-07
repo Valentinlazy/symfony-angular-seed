@@ -6,6 +6,7 @@
   roles:
     - server
     - nodejs
+    - maildev
     - vagrant_local
     - apache
     - galaxy/ANXS.postgresql

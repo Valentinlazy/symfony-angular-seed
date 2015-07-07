@@ -9,4 +9,7 @@ export default class UserService {
     let user = this.auth.getAuthUser();
     return this.api.get(`users/${user.id}`);
   }
+  save(model) {
+    return this.api.patch(`users/${model.id}`, model);
+  }
 }

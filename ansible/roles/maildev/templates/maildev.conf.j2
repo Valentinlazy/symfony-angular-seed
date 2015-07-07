@@ -1,0 +1,8 @@
+description "Maildev"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+
+exec /usr/bin/env $(which maildev) -s {{ maildev_smtp_port}} -w {{ maildev_http_port}}

@@ -12,7 +12,10 @@ let DashboardComponent = angular.module(`${appName}.dashboard`, [ProfilePage.nam
           url:'/dashboard',
           controller: 'DashboardCtrl',
           access: {allowAnonymous: false},
-          templateUrl: '/pages/dashboard/index.html'
+          templateUrl: '/pages/dashboard/index.html',
+          resolve: {
+            model: (userService) => userService.getProfile()
+          }
         })
       ;
       $urlRouterProvider.when('/dashboard', '/dashboard/profile');

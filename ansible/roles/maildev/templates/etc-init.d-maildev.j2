@@ -1,0 +1,31 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides: maildev
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Maildev
+# Description: This file starts and stops Maildev server
+#
+### END INIT INFO
+
+
+case "$1" in
+ start)
+   $(which maildev) -s {{ maildev_smtp_port}} -w {{ maildev_http_port}} &
+   ;;
+ stop)
+   kill -9 $(ps ax |grep "node /usr/bin/maildev" |grep -v grep |awk '{print $1}') 2> /dev/null
+   sleep 1
+   ;;
+ restart)
+   kill -9 $(ps ax |grep "node /usr/bin/maildev" |grep -v grep |awk '{print $1}') 2> /dev/null
+   sleep 2
+   $(which maildev) -s {{ maildev_smtp_port}} -w {{ maildev_http_port}} &
+   ;;
+ *)
+   echo "Usage: maildev {start|stop|restart}" >&2
+   exit 3
+   ;;
+esac
