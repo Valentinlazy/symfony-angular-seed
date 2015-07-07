@@ -7,6 +7,7 @@ import {appName} from './config/constants';
 import authModule from './components/auth/index';
 import LoginPage from './pages/login/index';
 import RegisterPage from './pages/register/index';
+import ResetPasswordPage from './pages/reset-password/index';
 import DashboardPage from './pages/dashboard/index';
 
 var app = angular.module(appName, [
@@ -15,6 +16,7 @@ var app = angular.module(appName, [
   authModule.name,
   LoginPage.name,
   RegisterPage.name,
+  ResetPasswordPage.name,
   DashboardPage.name
 ])
   .config(($httpProvider, $urlRouterProvider, $locationProvider) => {
@@ -22,7 +24,7 @@ var app = angular.module(appName, [
     $httpProvider.interceptors.push('authInterceptor');
 
     $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/dashboard');
+    $urlRouterProvider.otherwise('/dashboard/profile');
   })
   .run(($rootScope, $state, auth, $location) => {
 
