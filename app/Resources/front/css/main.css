@@ -25,3 +25,7 @@ html,body {
     left: 0;
     right: 0;
 }
+.login-box, .register-box {
+    margin: auto;
+    padding-top: 7%;
+}

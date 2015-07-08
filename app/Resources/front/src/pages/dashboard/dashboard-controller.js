@@ -6,7 +6,7 @@ export default class DashboardCtrl {
     $rootScope.skin = 'skin-purple';
     $rootScope.sidebar = {
       'sidebar-mini':true,
-      'sidebar-collapse':true
+      'sidebar-collapse':false
     };
     $rootScope.user = angular.copy(model);
     $scope.toggleSidebar = () => {
