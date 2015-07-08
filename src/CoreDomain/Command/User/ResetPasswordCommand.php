@@ -23,7 +23,7 @@ class ResetPasswordCommand implements CommandInterface
         $this->messenger = $messenger;
     }
 
-    public function execute($dto )
+    public function execute($dto)
     {
         if (!isset($dto->email)){
             throw new LogicException('Incorrect DTO. Need email property');

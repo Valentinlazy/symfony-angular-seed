@@ -51,7 +51,7 @@ services:
 
     app.command.update_profile_user:
         class: CoreDomain\Command\User\UpdateProfileCommand
-        arguments: [@app.repository.user]
+        arguments: [@app.repository.user, @app.security.user_password_encoder, @validator]
 
     ### Listeners
     app.domain.exception.listener:

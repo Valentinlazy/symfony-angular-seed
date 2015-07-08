@@ -60,7 +60,7 @@ class Messenger implements MessengerInterface
         $this->send(
             [$user->getEmail() => $user->getFullName()],
             'resetting.email.subject',
-            'mail:user.reseting.html.twig',
+            ':mail:user.resetting.html.twig',
             ['user' => $user, 'password' => $password->getPlainPassword()]
         );
     }
