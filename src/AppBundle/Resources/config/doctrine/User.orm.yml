@@ -8,17 +8,21 @@ CoreDomain\Model\User:
     fields:
         email:
             type: string
-            length: 255
             unique: true
         password:
             type: string
-            length: 255
         salt:
             type: string
-            length: 255
             nullable: false
         roles:
             type: array
+        fullName:
+            type: string
+            nullable: true
+        phone:
+            type: string
+            nullable: true
+
     oneToMany:
         sessions:
             targetEntity: CoreDomain\Model\UserSession

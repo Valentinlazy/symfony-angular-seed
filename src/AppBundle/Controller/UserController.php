@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use CoreDomain\DTO\ProfileDTO;
 use CoreDomain\DTO\UserDTO;
 use CoreDomain\Exception\AccessDeniedException;
 use CoreDomain\Exception\ValidationException;
@@ -62,15 +63,19 @@ class UserController extends Controller
      *      }
      * )
      */
-    public function updateProfileAction(User $user, UserDTO $userDTO, ConstraintViolationListInterface $validationErrors)
+    public function updateProfileAction(User $user, ProfileDTO $profileDTO, ConstraintViolationListInterface $validationErrors)
     {
         if (count($validationErrors) > 0) {
             throw new ValidationException('Bad request', $validationErrors);
         }
 
+        if ($this->getUser()->getId() !== $user->getId()) {
+            throw new AccessDeniedException();
+        }
+
         return $this
             ->get('app.command.update_profile_user')
-            ->execute((object)['user' => $user, 'userDTO' => $userDTO])
+            ->execute((object)['user' => $user, 'profileDTO' => $profileDTO])
         ;
     }
 

@@ -2,6 +2,7 @@
 
 namespace CoreDomain\Model;
 
+use CoreDomain\DTO\ProfileDTO;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
@@ -15,6 +16,7 @@ class User implements AdvancedUserInterface
     private $roles;
     private $sessions;
     private $fullName;
+    private $phone;
 
     public function __construct($email, Password $password, array $roles = ['ROLE_USER'])
     {
@@ -34,6 +36,12 @@ class User implements AdvancedUserInterface
     {
         $this->password = $password->getPassword();
         $this->salt = $password->getSalt();
+    }
+
+    public function updateProfile(ProfileDTO $dto)
+    {
+        $this->fullName = $dto->fullName;
+        $this->phone = $dto->phone;
     }
 
     public function getId()
@@ -94,6 +102,11 @@ class User implements AdvancedUserInterface
     public function getFullName()
     {
         return $this->fullName;
+    }
+
+    public function getPhone()
+    {
+        return $this->phone;
     }
 
     /**

@@ -3,21 +3,27 @@
 namespace CoreDomain\Command\User;
 
 use CoreDomain\Command\CommandInterface;
+use CoreDomain\DTO\ProfileDTO;
 use CoreDomain\DTO\UserDTO;
 use CoreDomain\Exception\LogicException;
+use CoreDomain\Exception\ValidationException;
+use CoreDomain\Model\Password;
 use CoreDomain\Model\User;
 
 class UpdateProfileCommand implements CommandInterface
 {
-    private $userRepository;
+    private $repository;
     private $encoder;
+    private $validator;
 
     public function __construct (
         \CoreDomain\Repository\UserRepositoryInterface $userRepository,
-        \CoreDomain\Security\PasswordStrategyInterface $encoder
+        \CoreDomain\Security\PasswordStrategyInterface $encoder,
+        \Symfony\Component\Validator\Validator\RecursiveValidator $validator
     ) {
-        $this->userRepository = $userRepository;
+        $this->repository = $userRepository;
         $this->encoder = $encoder;
+        $this->validator = $validator;
     }
 
     public function execute($dto)
@@ -25,15 +31,20 @@ class UpdateProfileCommand implements CommandInterface
         if (!($dto->user instanceof User)) {
             throw new LogicException('Incorrect object. Need '.User::class);
         }
-        if (!($dto->userDTO instanceof UserDTO)) {
-            throw new LogicException('Incorrect object. Need '.UserDTO::class);
+        if (!($dto->profileDTO instanceof ProfileDTO)) {
+            throw new LogicException('Incorrect object. Need '.ProfileDTO::class);
         }
 
-        if ($dto->userDTO->fullName) {
-            $dto->user->updateFullName($dto->userDTO->fullName);
+        if ($dto->profileDTO->password) {
+            $dto->user->changePassword(new Password($this->encoder, $dto->profileDTO->password));
+        }
+        $dto->user->updateProfile($dto->profileDTO);
+
+        if (count($validationErrors = $this->validator->validate($dto->user)) > 0) {
+            throw new ValidationException('Bad request', $validationErrors);
         }
 
-        $this->userRepository->addAndSave($dto->user);
+        $this->repository->addAndSave($dto->user);
 
         return $dto->user;
     }

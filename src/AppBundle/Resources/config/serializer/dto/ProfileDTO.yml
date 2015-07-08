@@ -1,0 +1,15 @@
+CoreDomain\DTO\UserDTO:
+    exclusion_policy: ALL
+    properties:
+        password:
+            expose: true
+            type: string
+            groups: [api_user_patch]
+        fullName:
+            expose: true
+            type: string
+            groups: [api_user_patch]
+        phone:
+            expose: true
+            type: string
+            groups: [api_user_patch]

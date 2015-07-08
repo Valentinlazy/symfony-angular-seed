@@ -1,0 +1,6 @@
+CoreDomain\DTO\ProfileDTO:
+    properties:
+        password:
+            - Length:
+                min: 6
+                groups: [api_user_patch]
