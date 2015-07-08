@@ -16,7 +16,7 @@ nelmio_cors:
     '^/api/':
         allow_credentials: true
         allow_origin: ['*']
-        allow_headers: ['origin', 'content-type', 'X-Custom-Auth']
+        allow_headers: ['origin', 'content-type', 'X-Custom-Auth', 'authorization']
         allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'PATCH', 'OPTIONS']
         max_age: 3600
 

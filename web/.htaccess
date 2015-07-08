@@ -5,12 +5,6 @@
 # to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
 DirectoryIndex index.html
 
-# temporary. REMOVE ON PROD!!!
-Header set Access-Control-Allow-Origin *
-Header set Access-Control-Allow-Credentials "true"
-Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-Header set Access-Control-Allow-Methods "POST, GET, PUT, DELETE, OPTIONS"
-
 # Disabling MultiViews prevents unwanted negotiation, e.g. "/app" should not resolve
 # to the front controller "/app.php" but be rewritten to "/app.php/app".
 <IfModule mod_negotiation.c>
@@ -34,7 +28,7 @@ Header set Access-Control-Allow-Methods "POST, GET, PUT, DELETE, OPTIONS"
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    RewriteRule ^api/(.*) /app.php/api/$1 [L]
+    RewriteRule ^api/(.*) /app_dev.php/api/$1 [L]
 
     # If the requested filename exists, simply serve it.
     # We only want to let Apache serve files and not directories.
