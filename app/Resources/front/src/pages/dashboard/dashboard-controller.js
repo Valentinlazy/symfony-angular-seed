@@ -1,3 +1,4 @@
+import angular from 'angular';
 
 /*@ngInject*/
 export default class DashboardCtrl {
@@ -5,12 +6,15 @@ export default class DashboardCtrl {
     $rootScope.skin = 'skin-purple';
     $rootScope.sidebar = {
       'sidebar-mini':true,
-      'sidebar-collapse':false
+      'sidebar-collapse':true
     };
-    $scope.model = model;
+    $rootScope.user = angular.copy(model);
     $scope.toggleSidebar = () => {
-      $rootScope.sidebar['sidebar-collapse'] = !$rootScope.sidebar['sidebar-collapse'];
-      $rootScope.sidebar = $rootScope.sidebar; // гавнуляр по другому не хочет работать ;(
+      $rootScope.sidebar = angular.merge(
+        {},
+        $rootScope.sidebar,
+        {'sidebar-collapse': !$rootScope.sidebar['sidebar-collapse']}
+      );
     };
     $scope.signout = (e) => {
       auth.signout();
