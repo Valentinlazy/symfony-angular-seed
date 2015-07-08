@@ -3,29 +3,29 @@
         <b>Callback</b>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sign up</p>
+        <p class="login-box-msg">Создать аккаунт</p>
         <form ng-submit="submit()">
             <div class="form-group has-feedback">
                 <input type="email" class="form-control" placeholder="Email" autocomplete="off" ng-model="model.email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Full Name" autocomplete="off" ng-model="model.fullName">
+                <input type="text" class="form-control" placeholder="ФИО" autocomplete="off" ng-model="model.fullName">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Password" autocomplete="off" ng-model="model.password">
+                <input type="text" class="form-control" placeholder="Пароль" autocomplete="off" ng-model="model.password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
                 <div class="col-xs-12">
                     <p class="text-danger" ng-if="formErrors">{{formErrors}}</p>
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign Up</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Создать</button>
                 </div><!-- /.col -->
             </div>
         </form>
 
-        <a ui-sref="login" class="text-center">I already have a membership</a>
+        <a ui-sref="login" class="text-center">У меня уже есть аккаунт</a>
 
     </div><!-- /.login-box-body -->
 </div>

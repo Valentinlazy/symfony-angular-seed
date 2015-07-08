@@ -1,12 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Profile page
-        <small>it all starts here</small>
+        Профиль
+        <small>все начинается отсюда</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Profile page</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Главная</a></li>
+        <li class="active">Профиль</li>
     </ol>
 </section>
 
@@ -17,20 +17,20 @@
             <form ng-submit="submit()">
                 <div class="form-group has-feedback">
                     <label>Full Name</label>
-                    <input type="text" class="form-control" placeholder="Full Name" autocomplete="off" ng-model="model.fullName">
+                    <input type="text" class="form-control" placeholder="ФИО" autocomplete="off" ng-model="model.fullName">
                 </div>
                 <div class="form-group has-feedback">
                     <label>Phone</label>
-                    <input type="text" class="form-control" placeholder="Phone" autocomplete="off" ng-model="model.phone">
+                    <input type="text" class="form-control" placeholder="Телефон" autocomplete="off" ng-model="model.phone">
                 </div>
                 <div class="form-group has-feedback">
                     <label>Password</label>
-                    <input type="text" class="form-control" placeholder="Password" autocomplete="off" ng-model="model.password">
+                    <input type="text" class="form-control" placeholder="Пароль" autocomplete="off" ng-model="model.password">
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
                         <p class="text-danger" ng-if="formErrors">{{formErrors}}</p>
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Сохранить</button>
                     </div><!-- /.col -->
                 </div>
             </form>

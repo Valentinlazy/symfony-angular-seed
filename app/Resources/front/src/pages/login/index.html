@@ -3,26 +3,26 @@
         <b>Callback</b>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Войдите для того, чтобы начать</p>
         <form ng-submit="submit()">
             <div class="form-group has-feedback">
                 <input type="email" class="form-control" placeholder="Email" autocomplete="off" ng-model="model.email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password" autocomplete="off" ng-model="model.password">
+                <input type="password" class="form-control" placeholder="Пароль" autocomplete="off" ng-model="model.password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
                 <div class="col-xs-12">
                     <p class="text-danger" ng-if="formErrors">{{formErrors}}</p>
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Войти</button>
                 </div><!-- /.col -->
             </div>
         </form>
 
-        <a ui-sref="reset-password">I forgot my password</a><br>
-        <a ui-sref="register" class="text-center">Register a new membership</a>
+        <a ui-sref="reset-password">Я забыл пароль</a><br>
+        <a ui-sref="register" class="text-center">Создать новый аккаунт</a>
 
     </div><!-- /.login-box-body -->
 </div>
