@@ -18,11 +18,12 @@ class User implements AdvancedUserInterface
     private $fullName;
     private $phone;
 
-    public function __construct($email, Password $password, array $roles = ['ROLE_USER'])
+    public function __construct($email, Password $password, $fullName, array $roles = ['ROLE_USER'])
     {
         $this->email = $email;
         $this->password = $password->getPassword();
         $this->salt = $password->getSalt();
+        $this->fullName = $fullName;
         $this->roles = $roles;
         $this->sessions = new ArrayCollection();
     }

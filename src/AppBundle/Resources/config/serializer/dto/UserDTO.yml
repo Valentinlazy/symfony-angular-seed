@@ -11,3 +11,8 @@ CoreDomain\DTO\UserDTO:
             expose: true
             type: string
             groups: [api_user_post, api_session_post]
+        fullName:
+            expose: true
+            serialized_name: fullName
+            type: string
+            groups: [api_user_post]

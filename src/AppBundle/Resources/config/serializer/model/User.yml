@@ -16,3 +16,13 @@ CoreDomain\Model\User:
             type: array
             groups:
                 - api_user_get
+        fullName:
+            expose: true
+            type: string
+            groups:
+                - api_user_get
+        phone:
+            expose: true
+            type: string
+            groups:
+                - api_user_get

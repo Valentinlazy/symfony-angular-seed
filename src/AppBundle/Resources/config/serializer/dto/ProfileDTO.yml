@@ -1,4 +1,4 @@
-CoreDomain\DTO\UserDTO:
+CoreDomain\DTO\ProfileDTO:
     exclusion_policy: ALL
     properties:
         password:
@@ -7,6 +7,7 @@ CoreDomain\DTO\UserDTO:
             groups: [api_user_patch]
         fullName:
             expose: true
+            serialized_name: fullName
             type: string
             groups: [api_user_patch]
         phone:

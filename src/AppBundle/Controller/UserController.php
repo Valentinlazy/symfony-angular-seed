@@ -55,7 +55,7 @@ class UserController extends Controller
      * @Rest\Patch("/users/{id}")
      * @Rest\View(serializerGroups="api_user_get", statusCode=200)
      * @ParamConverter(
-     *      "userDTO",
+     *      "profileDTO",
      *      converter="fos_rest.request_body",
      *      options={
      *          "deserializationContext"={"groups"="api_user_patch"},

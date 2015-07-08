@@ -7,3 +7,5 @@ CoreDomain\Model\User:
             - NotBlank: ~
         password:
             - NotBlank: ~
+        fullName:
+            - NotBlank: ~

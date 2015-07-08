@@ -31,7 +31,7 @@ class AddUserCommand implements CommandInterface
             throw new LogicException('Incorrect DTO. Need '.UserDTO::class);
         }
 
-        $user = new User($dto->email, new Password($this->encoder, $dto->password));
+        $user = new User($dto->email, new Password($this->encoder, $dto->password), $dto->fullName);
 
         if (count($validationErrors = $this->validator->validate($user)) > 0) {
             throw new ValidationException('Bad request', $validationErrors);
