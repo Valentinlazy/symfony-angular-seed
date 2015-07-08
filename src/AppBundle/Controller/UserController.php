@@ -45,9 +45,7 @@ class UserController extends Controller
      */
     public function getUserAction(User $user)
     {
-        if ($this->getUser()->getId() !== $user->getId()) {
-            throw new AccessDeniedException();
-        }
+        $this->checkAccess($user);
         return $user;
     }
 
@@ -65,12 +63,9 @@ class UserController extends Controller
      */
     public function updateProfileAction(User $user, ProfileDTO $profileDTO, ConstraintViolationListInterface $validationErrors)
     {
+        $this->checkAccess($user);
         if (count($validationErrors) > 0) {
             throw new ValidationException('Bad request', $validationErrors);
-        }
-
-        if ($this->getUser()->getId() !== $user->getId()) {
-            throw new AccessDeniedException();
         }
 
         return $this
@@ -89,6 +84,14 @@ class UserController extends Controller
             ->get('app.command.reset_password_user')
             ->execute((object)['email' => $request->get('email')])
         ;
+    }
+
+    private function checkAccess(User $user)
+    {
+        $currentUser = $this->getUser();
+        if (!$currentUser || $currentUser->getId() !== $user->getId()) {
+            throw new AccessDeniedException();
+        }
     }
 
 }

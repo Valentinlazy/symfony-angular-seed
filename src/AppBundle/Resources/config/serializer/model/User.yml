@@ -19,6 +19,7 @@ CoreDomain\Model\User:
         fullName:
             expose: true
             type: string
+            serialized_name: fullName
             groups:
                 - api_user_get
         phone:
