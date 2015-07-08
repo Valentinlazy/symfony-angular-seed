@@ -23,7 +23,7 @@
   shell: gulp bundle chdir=/vagrant
 
 - name: clear cache
-  shell: "php app/console cache:clear"
+  shell: "php app/console cache:clear -e=prod"
   args:
     chdir: "/vagrant"
 
