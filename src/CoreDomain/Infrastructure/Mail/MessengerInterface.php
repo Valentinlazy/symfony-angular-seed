@@ -8,4 +8,5 @@ use CoreDomain\Model\User;
 interface MessengerInterface
 {
     public function sendResettingEmailMessage(User $user, Password $password);
+    public function flush();
 }

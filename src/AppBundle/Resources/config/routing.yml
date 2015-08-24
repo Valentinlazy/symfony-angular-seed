@@ -2,7 +2,9 @@
 app_user:
     resource: AppBundle\Controller\UserController
     type: rest
+    name_prefix: user_
 
 app_session:
-    resource: AppBundle\Controller\SessionController
+    resource: AppBundle\Controller\UserSessionController
     type: rest
+    name_prefix: session_

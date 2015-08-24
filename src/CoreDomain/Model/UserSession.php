@@ -1,4 +1,5 @@
 <?php
+
 namespace CoreDomain\Model;
 
 class UserSession

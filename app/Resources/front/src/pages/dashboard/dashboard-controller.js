@@ -1,14 +1,15 @@
+'use strict';
 import angular from 'angular';
 
 /*@ngInject*/
 export default class DashboardCtrl {
-  constructor($rootScope, $scope, auth, model) {
+  constructor($rootScope, $scope, auth, profile) {
     $rootScope.skin = 'skin-purple';
     $rootScope.sidebar = {
       'sidebar-mini':true,
       'sidebar-collapse':false
     };
-    $rootScope.user = angular.copy(model);
+    $rootScope.user = angular.copy(profile);
     $scope.toggleSidebar = () => {
       $rootScope.sidebar = angular.merge(
         {},

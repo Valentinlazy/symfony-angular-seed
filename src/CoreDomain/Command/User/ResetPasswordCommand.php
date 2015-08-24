@@ -25,7 +25,7 @@ class ResetPasswordCommand implements CommandInterface
 
     public function execute($dto)
     {
-        if (!isset($dto->email)){
+        if (!isset($dto->email)) {
             throw new LogicException('Incorrect DTO. Need email property');
         }
         $user = $this->userRepository->findOneByEmail($dto->email);

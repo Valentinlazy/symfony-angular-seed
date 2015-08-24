@@ -2,6 +2,6 @@
 
 namespace CoreDomain\Exception;
 
-class DomainException extends \Exception {
-
+class DomainException extends \Exception
+{
 }

@@ -2,3 +2,7 @@
 - name: Install xDebug
   sudo: yes
   apt: pkg=php5-xdebug state=latest
+
+- name: Configure xDebug
+  template: src=xdebug.ini.j2 dest=/etc/php5/mods-available/xdebug.ini owner=root group=root mode=0644
+  notify: restart apache

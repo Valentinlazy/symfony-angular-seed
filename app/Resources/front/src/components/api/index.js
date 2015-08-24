@@ -1,3 +1,4 @@
+'use strict';
 import angular from 'angular';
 import {appName} from '../../config/constants';
 import ApiProvider from './api.provider';

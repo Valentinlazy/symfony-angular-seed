@@ -1,9 +1,12 @@
+'use strict';
 import angular from 'angular';
 import {appName} from '../../config/constants';
 import DashboardController from './dashboard-controller';
 import ProfilePage from '../profile/index';
 
-let DashboardComponent = angular.module(`${appName}.dashboard`, [ProfilePage.name])
+let DashboardComponent = angular.module(`${appName}.dashboard`, [
+    ProfilePage.name
+  ])
     .controller('DashboardCtrl', DashboardController)
     .config(($stateProvider, $urlRouterProvider) => {
       $stateProvider
@@ -14,7 +17,7 @@ let DashboardComponent = angular.module(`${appName}.dashboard`, [ProfilePage.nam
           access: {allowAnonymous: false},
           templateUrl: '/pages/dashboard/index.html',
           resolve: {
-            model: (userService) => userService.getProfile()
+            profile: (userService) => userService.getProfile()
           }
         })
       ;

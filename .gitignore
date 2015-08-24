@@ -12,14 +12,17 @@
 /composer.phar
 .vagrant/
 .idea
+.php_cs.cache
 node_modules/
 jspm_packages/
 /web/vendors
 /web/components
+/web/directives
 /web/config
 /web/css
 /web/fonts
 /web/pages
+/web/static
 /web/index.html
 /web/app.js*
 /ansible/roles/galaxy

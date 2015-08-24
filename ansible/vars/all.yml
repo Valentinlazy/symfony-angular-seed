@@ -1,11 +1,14 @@
 ---
 
-app_name: callback
-app_user: callback
-app_database_password: callback
+app_name: seed
+app_user: seed
+app_database_password: seed
 app_config_dir: /vagrant/app/config
 app_secret_key: "BM3L9938BRkLvGEE2UKNvtjSZ1"
 maildev_smtp_port: 25
+
+swap_file_path: /swapfile
+swap_file_size: 1536
 
 server:
     install: '1'
@@ -14,11 +17,11 @@ server:
     locale: en_US.UTF-8
 vagrant_local:
     install: '1'
-    vm: { base_box: trusty64, hostname: callback.vagrant, memory: '1536', sharedfolder: ./, enableWindows: '1', useVagrantCloud: '1', syncType: nfs }
+    vm: { base_box: trusty64, hostname: seed.vagrant, memory: '1536', sharedfolder: ./, enableWindows: '1', useVagrantCloud: '1', syncType: nfs }
 apache:
     install: '1'
     docroot: /vagrant/web
-    servername: callback.vagrant
+    servername: seed.vagrant
 mysql:
     install: '1'
     root_password: root
@@ -45,3 +48,12 @@ postgresql_users:
     - name: "{{app_user}}"
       pass: "{{app_database_password}}"
       encrypted: no
+
+rabbitmq_ssl: false
+rabbitmq_vhost_definitions:
+  - name:    seed
+
+rabbitmq_users_definitions:
+  - vhost:    seed
+    user:     seed
+    password: seed

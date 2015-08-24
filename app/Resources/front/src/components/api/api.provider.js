@@ -1,3 +1,4 @@
+'use strict';
 import angular from 'angular';
 import {host} from '../../config/constants';
 

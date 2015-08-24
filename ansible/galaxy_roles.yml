@@ -1,2 +1,3 @@
 ---
+ - src: Mayeu.RabbitMQ
  - src: ANXS.postgresql

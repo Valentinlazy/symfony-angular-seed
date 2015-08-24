@@ -22,7 +22,9 @@
         "doctrine/doctrine-migrations-bundle": "2.1.*@dev",
         "friendsofsymfony/rest-bundle": "~1.5.3",
         "jms/serializer-bundle": "~1.0",
-        "nelmio/cors-bundle": "~1.4.0"
+        "nelmio/cors-bundle": "~1.4.0",
+        "ramsey/uuid": "~2.8",
+        "guzzlehttp/guzzle": "^6.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

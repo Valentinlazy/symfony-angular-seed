@@ -1,28 +1,32 @@
 <div class="login-box">
-    <div class="login-logo">
-        <b>Callback</b>
-    </div><!-- /.login-logo -->
-    <div class="login-box-body">
-        <p class="login-box-msg">Войдите для того, чтобы начать</p>
-        <form ng-submit="submit()">
-            <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email" autocomplete="off" ng-model="model.email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Пароль" autocomplete="off" ng-model="model.password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <p class="text-danger" ng-if="formErrors">{{formErrors}}</p>
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Войти</button>
-                </div><!-- /.col -->
-            </div>
-        </form>
+  <div class="login-logo">
+    <b>Callback</b>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Войдите для того, чтобы начать</p>
 
-        <a ui-sref="reset-password">Я забыл пароль</a><br>
-        <a ui-sref="register" class="text-center">Создать новый аккаунт</a>
+    <form ng-submit="submit()">
+      <div class="form-group has-feedback">
+        <input type="email" class="form-control" placeholder="Email" autocomplete="off" ng-model="model.email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Пароль" autocomplete="off" ng-model="model.password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="text-danger" ng-if="formErrors">{{formErrors}}</p>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Войти</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
 
-    </div><!-- /.login-box-body -->
+    <a ui-sref="reset-password">Я забыл пароль</a><br>
+    <a ui-sref="register" class="text-center">Создать новый аккаунт</a>
+
+  </div>
+  <!-- /.login-box-body -->
 </div>

@@ -1,4 +1,5 @@
 <?php
+
 namespace CoreDomain\DTO;
 
 class UserDTO

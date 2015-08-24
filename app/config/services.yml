@@ -36,30 +36,37 @@ services:
         class: AppBundle\Repository\UserSessionRepository
         arguments: [@doctrine.orm.default_entity_manager]
 
+    app.repository.session:
+        class: AppBundle\Repository\Site\SessionRepository
+        arguments: [@doctrine.orm.default_entity_manager]
     ### Commands
-    app.command.add_user:
+    app.command.user_add:
         class: CoreDomain\Command\User\AddUserCommand
         arguments: [@app.repository.user, @app.security.user_password_encoder, @validator]
 
-    app.command.add_session:
+    app.command.session_add:
         class: CoreDomain\Command\User\AddSessionCommand
         arguments: [@app.repository.user, @app.repository.user_session, @app.security.user_password_encoder]
 
-    app.command.reset_password_user:
+    app.command.user_reset_password:
         class: CoreDomain\Command\User\ResetPasswordCommand
         arguments: [@app.repository.user, @app.security.user_password_encoder, @app.messenger]
 
-    app.command.update_profile_user:
+    app.command.user_update_profile:
         class: CoreDomain\Command\User\UpdateProfileCommand
         arguments: [@app.repository.user, @app.security.user_password_encoder, @validator]
 
+    app.command.session_get:
+        class: CoreDomain\Command\Site\GetSessionCommand
+        arguments: [@app.repository.session]
+
     ### Listeners
-    app.domain.exception.listener:
+    app.listener.domain.exception:
         class: AppBundle\Listener\DomainExceptionListener
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onDomainException }
 
-    app.mailer.queue.listener:
+    app.listener.mailer.queue:
         class: AppBundle\Listener\MailerQueueListener
         arguments:
             - @app.messenger

@@ -15,7 +15,7 @@ class AddUserCommand implements CommandInterface
     private $encoder;
     private $validator;
 
-    public function __construct (
+    public function __construct(
         \CoreDomain\Repository\UserRepositoryInterface $repository,
         \CoreDomain\Security\PasswordStrategyInterface $encoder,
         \Symfony\Component\Validator\Validator\RecursiveValidator $validator

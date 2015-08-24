@@ -9,6 +9,7 @@
     - maildev
     - vagrant_local
     - apache
+#    - galaxy/Mayeu.RabbitMQ
     - galaxy/ANXS.postgresql
     - php
     - xdebug

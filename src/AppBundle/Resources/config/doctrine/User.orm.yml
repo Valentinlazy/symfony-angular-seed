@@ -22,7 +22,6 @@ CoreDomain\Model\User:
         phone:
             type: string
             nullable: true
-
     oneToMany:
         sessions:
             targetEntity: CoreDomain\Model\UserSession

@@ -36,3 +36,5 @@
   with_dict:
       LC_ALL: "{{server.locale}}"
       LC_LANG: "{{server.locale}}"
+
+- include: swap.yml

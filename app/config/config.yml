@@ -93,13 +93,15 @@ jms_serializer:
     metadata:
         auto_detection: false
         directories:
-            app_model_serializer:
+            core_model_serializer:
                 namespace_prefix: "CoreDomain\\Model"
                 path: "@AppBundle/Resources/config/serializer/model"
-            app_dto_serializer:
+            core_dto_serializer:
                 namespace_prefix: "CoreDomain\\DTO"
                 path: "@AppBundle/Resources/config/serializer/dto"
-
+            app_model_serializer:
+                namespace_prefix: "AppBundle\\Model"
+                path: "@AppBundle/Resources/config/serializer/model"
 fos_rest:
     service:
         serializer: jms_serializer.serializer

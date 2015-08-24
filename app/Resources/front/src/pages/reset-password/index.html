@@ -1,24 +1,28 @@
 <div class="login-box">
-    <div class="login-logo">
-        <b>Callback</b>
-    </div><!-- /.login-logo -->
-    <div class="login-box-body">
-        <p class="login-box-msg">Сбросить пароль</p>
-        <form ng-submit="submit()">
-            <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email" autocomplete="off" ng-model="model.email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <p class="text-danger" ng-if="formErrors">{{formErrors}}</p>
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Сбросить</button>
-                </div><!-- /.col -->
-            </div>
-        </form>
+  <div class="login-logo">
+    <b>Callback</b>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Сбросить пароль</p>
 
-        <a ui-sref="login" class="text-center">У меня уже есть аккаунт</a><br>
-        <a ui-sref="register" class="text-center">Создать новый аккаунт</a>
+    <form ng-submit="submit()">
+      <div class="form-group has-feedback">
+        <input type="email" class="form-control" placeholder="Email" autocomplete="off" ng-model="model.email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="text-danger" ng-if="formErrors">{{formErrors}}</p>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Сбросить</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
 
-    </div><!-- /.login-box-body -->
+    <a ui-sref="login" class="text-center">У меня уже есть аккаунт</a><br>
+    <a ui-sref="register" class="text-center">Создать новый аккаунт</a>
+
+  </div>
+  <!-- /.login-box-body -->
 </div>

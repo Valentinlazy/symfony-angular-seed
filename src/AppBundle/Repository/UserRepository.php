@@ -62,7 +62,6 @@ class UserRepository implements UserRepositoryInterface
             ->getOneOrNullResult();
     }
 
-
     /*public function findUserByConfirmationToken($token)
     {
         return $this->em->createQueryBuilder()

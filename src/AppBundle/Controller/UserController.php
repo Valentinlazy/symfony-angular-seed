@@ -34,14 +34,14 @@ class UserController extends Controller
         }
 
         return $this->get('app.command_handler')->run(
-            $this->get('app.command.add_user'),
+            $this->get('app.command.user_add'),
             $userDTO
         );
     }
 
     /**
      * @Rest\Get("/users/{id}")
-     * @Rest\View(serializerGroups="api_user_get", statusCode=201)
+     * @Rest\View(serializerGroups="api_user_get", statusCode=200)
      */
     public function getUserAction(User $user)
     {
@@ -69,7 +69,7 @@ class UserController extends Controller
         }
 
         return $this
-            ->get('app.command.update_profile_user')
+            ->get('app.command.user_update_profile')
             ->execute((object)['user' => $user, 'profileDTO' => $profileDTO])
         ;
     }
@@ -81,7 +81,7 @@ class UserController extends Controller
     public function resetPasswordAction(Request $request)
     {
         $this
-            ->get('app.command.reset_password_user')
+            ->get('app.command.user_reset_password')
             ->execute((object)['email' => $request->get('email')])
         ;
     }
@@ -93,5 +93,4 @@ class UserController extends Controller
             throw new AccessDeniedException();
         }
     }
-
 }

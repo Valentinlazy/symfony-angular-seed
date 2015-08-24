@@ -97,7 +97,7 @@ class Messenger implements MessengerInterface
         $this->clear();
     }
 
-    public function clear()
+    private function clear()
     {
         $this->pendingEmails = [];
     }

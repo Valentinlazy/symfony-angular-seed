@@ -36,11 +36,11 @@ require_plugin 'vagrant-host-shell'
 Vagrant.configure("2") do |config|
 
     config.vm.provider :virtualbox do |v|
-        v.name = "callback"
+        v.name = "seed"
         v.customize [
             "modifyvm", :id,
-            "--name", "callback",
-            "--memory", 1536,
+            "--name", "seed",
+            "--memory", 512,
             "--natdnshostresolver1", "on",
             "--cpus", 1,
         ]
@@ -88,9 +88,9 @@ Vagrant.configure("2") do |config|
 	config.hostmanager.manage_host = true
 	config.hostmanager.ignore_private_ip = false
 	config.hostmanager.include_offline = true
-	config.vm.define 'callback' do |node|
-	    node.vm.hostname = 'callback.vagrant'
-    	node.hostmanager.aliases = %w(callback.vagrant)
+	config.vm.define 'seed' do |node|
+	    node.vm.hostname = 'seed.vagrant'
+    	node.hostmanager.aliases = %w(seed.vagrant)
 	end
 
 end

@@ -19,7 +19,7 @@ class Password
     {
         $this->encoder = $encoder;
         $this->plainPassword = $password;
-        if (!$password){
+        if (!$password) {
             $this->generatePassword();
         }
         $this->generateSalt();
@@ -56,6 +56,5 @@ class Password
     {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+?";
         return substr(str_shuffle($chars), 0, $length);
-
     }
 }

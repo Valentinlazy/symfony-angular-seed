@@ -1,3 +1,4 @@
+'use strict';
 import {host, TOKEN_HEADER_NAME} from '../../config/constants';
 
 function authInterceptor($rootScope, $q, authStorage) {

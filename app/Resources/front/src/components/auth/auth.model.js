@@ -1,3 +1,4 @@
+'use strict';
 
 class AuthModel {
   constructor(email, password) {

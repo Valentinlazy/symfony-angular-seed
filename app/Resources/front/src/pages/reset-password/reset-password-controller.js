@@ -1,3 +1,4 @@
+'use strict';
 import AuthModel from '../../components/auth/auth.model';
 
 /*@ngInject*/

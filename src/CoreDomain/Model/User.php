@@ -97,7 +97,6 @@ class User implements AdvancedUserInterface
 
     public function eraseCredentials()
     {
-
     }
 
     public function getFullName()

@@ -1,3 +1,4 @@
+'use strict';
 import AuthModel from './auth.model';
 
 class AuthProvider {

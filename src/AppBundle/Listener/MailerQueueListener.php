@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Listener;
 
 use AppBundle\Infrastructure\Mail\Messenger;

@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Listener;
 
 use CoreDomain\Exception\AccessDeniedException;

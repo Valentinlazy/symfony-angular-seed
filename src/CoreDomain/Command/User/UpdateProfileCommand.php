@@ -4,7 +4,6 @@ namespace CoreDomain\Command\User;
 
 use CoreDomain\Command\CommandInterface;
 use CoreDomain\DTO\ProfileDTO;
-use CoreDomain\DTO\UserDTO;
 use CoreDomain\Exception\LogicException;
 use CoreDomain\Exception\ValidationException;
 use CoreDomain\Model\Password;
@@ -16,7 +15,7 @@ class UpdateProfileCommand implements CommandInterface
     private $encoder;
     private $validator;
 
-    public function __construct (
+    public function __construct(
         \CoreDomain\Repository\UserRepositoryInterface $userRepository,
         \CoreDomain\Security\PasswordStrategyInterface $encoder,
         \Symfony\Component\Validator\Validator\RecursiveValidator $validator

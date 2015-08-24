@@ -1,3 +1,4 @@
+'use strict';
 import AuthModel from '../../components/auth/auth.model';
 
 /*@ngInject*/
@@ -12,7 +13,7 @@ export default class RegisterCtrl {
             auth.signin($scope.model).then(
               ()=>{
                 $scope.isPending = false;
-                $state.transitionTo('dashboard');
+                $state.transitionTo('dashboard.profile');
               });
           },
           (_response)=>{

@@ -2,7 +2,7 @@ System.config({
   "transpiler": "babel",
   "babelOptions": {
     "optional": [
-      "es7.decorators",
+      "es7.asyncFunctions",
       "es7.classProperties",
       "runtime"
     ]
@@ -22,12 +22,17 @@ System.config({
     "angular": "github:angular/bower-angular@1.4.0",
     "angular-cookies": "github:angular/bower-angular-cookies@1.4.1",
     "angular-mocks": "github:angular/bower-angular-mocks@1.4.0",
+    "angular-modal-service": "github:dwmkerr/angular-modal-service@0.6.6",
+    "angular-notify": "github:cgross/angular-notify@2.5.0",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
     "babel": "npm:babel-core@5.5.7",
     "babel-runtime": "npm:babel-runtime@5.5.7",
     "bootstrap": "github:twbs/bootstrap@3.3.4",
+    "candreoliveira/ngMask": "github:candreoliveira/ngMask@3.0.12",
+    "clockpicker": "github:weareoutman/clockpicker@0.0.7",
     "core-js": "npm:core-js@0.9.16",
     "jquery": "github:components/jquery@2.1.3",
+    "ngMask": "github:candreoliveira/ngMask@3.0.12",
     "storage": "github:agrublev/angularLocalStorage@0.3.0",
     "traceur": "github:jmcriffey/bower-traceur@0.0.88",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.88",
