@@ -12,7 +12,7 @@ swap_file_size: 1536
 
 server:
     install: '1'
-    packages: [git, htop, imagemagick]
+    packages: [git, htop, imagemagick, expect]
     timezone: Europe/Minsk
     locale: en_US.UTF-8
 vagrant_local:

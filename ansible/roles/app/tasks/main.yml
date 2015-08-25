@@ -1,6 +1,11 @@
 ---
 # application tasks to be customized and to run after the main provision
 
+- name: Config jspm
+  shell: expect /vagrant/ansible/files/config_jspm.sh
+  sudo: true
+  sudo_user: vagrant
+
 - name: Copy local configs
   template: >
     src=templates/symfony/parameters.yml.j2
