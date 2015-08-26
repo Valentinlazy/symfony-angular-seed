@@ -1,0 +1,21 @@
+app_user: exemok
+app_path: /var/www
+app_config_dir: "{{ app_path }}/app/config"
+
+mailer_transport: smtp
+mailer_host: mx1.telecontact.ru
+mailer_port: 25
+mailer_user: callback@telecontact.ru
+mailer_password: ~
+mailer_from: callback@telecontact.ru
+
+after_deploy:
+ - "app/console --no-interaction cache:clear -e=prod"
+ - "app/console --no-interaction assets:install web --symlink -e=prod"
+ - "app/console --no-interaction assetic:dump -e=prod"
+ - "app/console --no-interaction doctrine:migration:migrate -e=prod"
+
+nginx:
+  install: '1'
+  docroot: "{{ app_path }}/web"
+  servername: callback.rozumsoft.by

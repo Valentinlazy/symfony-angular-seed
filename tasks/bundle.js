@@ -7,6 +7,8 @@ var gulp = require('gulp'),
   ngAnnotate = require('gulp-ng-annotate'),
   jspm = require('jspm'),
   NODE_ENV = process.env.NODE_ENV || 'production',
+  tar = require('gulp-tar'),
+  gz = require('gulp-gzip'),
   path;
 
 module.exports = function (_path_) {
@@ -68,4 +70,23 @@ gulp.task('bundle-statics', function () {
 
 gulp.task('bundle', function () {
   runSequence('clean-bundle', 'bundle-app', 'bundle-statics');
+});
+
+gulp.task('buildPack', function () {
+  return gulp.src([
+    'app/**',
+    '!app/cache/**',
+    '!app/logs/**',
+    '!app/config/parameters.yml',
+    'src/**',
+    'vendor/**',
+    '!**/.git/**',
+    '!web/**/*.map',
+    '!web/bundles/**',
+    'web/**',
+    'web/.htaccess'
+    ], { base: process.cwd() })
+    .pipe(tar('build.tar'))
+    .pipe(gz())
+    .pipe(gulp.dest('builds/'));
 });

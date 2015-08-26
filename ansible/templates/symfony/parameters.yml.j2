@@ -1,16 +1,16 @@
 parameters:
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     {{app_name}}_db
-    database_user:     {{app_user}}
+    database_name:     {{ app_name }}_db
+    database_user:     {{ app_user }}
     database_password: {{ app_database_password }}
 
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_port:       25
-    mailer_user:       ~
-    mailer_password:   ~
-    mailer_from:       noreply@seed.vagrant
+    mailer_transport:  {{ mailer_transport }}
+    mailer_host:       {{ mailer_host }}
+    mailer_port:       {{ mailer_port }}
+    mailer_user:       {{ mailer_user }}
+    mailer_password:   {{ mailer_password }}
+    mailer_from:       {{ mailer_from }}
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            {{app_secret_key}}
+    secret:            {{ app_secret_key }}

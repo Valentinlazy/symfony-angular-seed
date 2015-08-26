@@ -24,9 +24,6 @@
   sudo: true
   sudo_user: vagrant
 
-- name: build frontend
-  shell: gulp bundle chdir=/vagrant
-
 - name: clear cache
   shell: "php app/console cache:clear -e=prod"
   args:
@@ -36,3 +33,9 @@
   shell: "php app/console doctrine:migrations:migrate -n"
   args:
     chdir: "/vagrant"
+
+- name: build frontend
+  shell: gulp bundle chdir=/vagrant
+
+- name: create build.tar.gz
+  shell: gulp buildPack chdir=/vagrant

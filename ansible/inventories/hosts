@@ -1,0 +1,2 @@
+[server]
+128.199.41.36 ansible_ssh_user=exemok

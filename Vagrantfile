@@ -71,7 +71,9 @@ Vagrant.configure("2") do |config|
         end
         config.vm.provision "ansible" do |ansible|
             ansible.playbook = "ansible/playbook.yml"
-            ansible.limit = 'all'
+            ansible.sudo = true
+            ansible.limit = 'seed'
+            ansible.groups = {"vagrant" => ["seed"] }
         end
     else
         config.vm.provision :shell, path: "ansible/windows.sh", args: ["callback.vagrant"]

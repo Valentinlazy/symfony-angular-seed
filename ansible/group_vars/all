@@ -1,0 +1,64 @@
+app_name: callback
+app_user: callback
+app_database_password: callback
+app_config_dir: /vagrant/app/config
+app_secret_key: "BM3L9938BRkLvGEE2UKNvtjSZ1"
+maildev_smtp_port: 25
+
+mailer_transport: smtp
+mailer_host: 127.0.0.1
+mailer_port: 25
+mailer_user: ~
+mailer_password: ~
+mailer_from: noreply@callback.vagrant
+
+swap_file_path: /swapfile
+swap_file_size: 1536
+
+server:
+    install: '1'
+    packages: [git, htop, imagemagick, expect]
+    timezone: Europe/Minsk
+    locale: en_US.UTF-8
+vagrant_local:
+    install: '1'
+    vm: { base_box: trusty64, hostname: callback.vagrant, memory: '1536', sharedfolder: ./, enableWindows: '1', useVagrantCloud: '1', syncType: nfs }
+nginx:
+    install: '1'
+    docroot: /vagrant/web
+    servername: callback.vagrant
+mysql:
+    install: '1'
+    root_password: root
+    database:  "{{app_name}}"
+    user:  "{{app_user}}"
+    password: "{{app_database_password}}"
+    dump: ''
+php:
+    install: '1'
+    ppa: php5-5.6
+    packages: [php5-cli, php5-intl, php5-mcrypt, php5-curl, php5-gd, php5-mysql, php5-xdebug, php5-apcu, php5-pgsql, php5-fpm]
+xdebug:
+    install: '1'
+composer:
+    install: '1'
+
+postgresql_version: 9.4
+
+postgresql_databases:
+    - name: "{{app_name}}_db"
+    - name: "{{app_name}}_db_test"
+
+postgresql_users:
+    - name: "{{app_user}}"
+      pass: "{{app_database_password}}"
+      encrypted: no
+
+rabbitmq_ssl: false
+rabbitmq_vhost_definitions:
+  - name:    callback
+
+rabbitmq_users_definitions:
+  - vhost:    callback
+    user:     callback
+    password: callback

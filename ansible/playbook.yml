@@ -1,17 +1,50 @@
 ---
 - hosts: all
   sudo: true
-  vars_files:
-    - vars/all.yml
   roles:
     - server
+#    - galaxy/Mayeu.RabbitMQ
+    - galaxy/ANXS.postgresql
+    - nginx
+    - php
+
+- hosts: vagrant
+  roles:
     - nodejs
     - maildev
     - vagrant_local
-    - apache
-#    - galaxy/Mayeu.RabbitMQ
-    - galaxy/ANXS.postgresql
-    - php
     - xdebug
     - composer
     - app
+
+- hosts: server
+  post_tasks:
+    - name: Remove old build from server
+      file: path=/tmp/build.tar.gz state=absent
+      sudo: yes
+      sudo_user: "{{app_user}}"
+
+    - name: Upload build to server
+      copy: src=../builds/build.tar.gz dest=/tmp/build.tar.gz
+      sudo: yes
+      sudo_user: "{{app_user}}"
+
+    - name: Untar arhive
+      unarchive: src=/tmp/build.tar.gz dest={{app_path}} copy=no
+      sudo: yes
+
+    - name: Copy local configs
+      template: >
+        src=templates/symfony/parameters.yml.j2
+        dest={{app_config_dir}}/parameters.yml
+      sudo: yes
+
+    - name: Cleaning and warming up app cache
+      command: "{{item}}"
+      args:
+         chdir: "{{app_path}}"
+      with_items: after_deploy
+      sudo: yes
+
+    - name: change permitions
+      file: path="{{app_path}}" mode=0755 group=www-data owner=www-data recurse=yes

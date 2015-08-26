@@ -2,6 +2,7 @@
 - name: Add ppa Repository
   sudo: yes
   apt_repository: repo=ppa:ondrej/{{ php.ppa }}
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Update apt
   sudo: yes
