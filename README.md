@@ -1,69 +1,45 @@
-Symfony Standard Edition
+Seed project
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+## What included
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+ - Configured PHP 5.6
+ - Configured Nginx
+ - Configured PostgreSQL 9.4 (via [ANXS.postgresql](https://github.com/ANXS/postgresql))
+ - [MailDev](http://djfarrelly.github.io/MailDev/) for email debugging and functional tests
+ - Symfony 2.7 standard edition
+ - Doctrine ORM 2.5
+ - Enabled APCu cache for Doctrine and Validator (only in prod environment)
+ - Gulp build toolchain
+ - Angular
 
-What's inside?
---------------
+## Required software
 
-The Symfony Standard Edition is configured with the following defaults:
+ - VirtualBox
+ - [Vagrant](https://www.vagrantup.com/)
+ - [vagrant-host-shell](https://github.com/phinze/vagrant-host-shell) for auto install galaxy roles
+ - [Vagrant Host Manager](https://github.com/smdahlen/vagrant-hostmanager) for handling local DNS and DHCP instead of static IP
+ - [Ansible](http://docs.ansible.com/intro_installation.html)
 
-  * An AppBundle you can use to start coding;
+## Development
 
-  * Twig as the only configured template engine;
+To prepare your local dev environment just run `vagrant up`. All actions to setup projects should be automated and ideally shouldn't require any manual actions. Project will be available at [seed.vagrant](http://seed.vagrant).
 
-  * Doctrine ORM/DBAL;
+## Deployment
 
-  * Swiftmailer;
+To deploy project on real server you can use ansible. For example, this commands:
 
-  * Annotations enabled for everything.
+```
+gulp buildPack
+ansible-playbook ansible/playbook.yml --limit=server --sudo --ask-sudo-pass
+```
 
-It comes pre-configured with the following bundles:
+You have to replace example server config in file `ansible/inventories/hosts`.
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+### Ansible verbocity level
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+If you want to debug your ansible provisioner, you can just run `vagrant provision --debug`. Also you can specify verbosity level via `VAGRANT_LOG` env variable (`info` or `debug`)
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+### XDebug
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
-    library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  http://symfony.com/doc/2.7/book/installation.html
-[6]:  http://symfony.com/doc/2.7/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  http://symfony.com/doc/2.7/book/doctrine.html
-[8]:  http://symfony.com/doc/2.7/book/templating.html
-[9]:  http://symfony.com/doc/2.7/book/security.html
-[10]: http://symfony.com/doc/2.7/cookbook/email.html
-[11]: http://symfony.com/doc/2.7/cookbook/logging/monolog.html
-[12]: http://symfony.com/doc/2.7/cookbook/assetic/asset_management.html
-[13]: http://symfony.com/doc/2.7/bundles/SensioGeneratorBundle/index.html
+This project template provides simple remote debugging with xdebug. To use xdebug sessions verify that your IDE KEY is `PHPSTORM` and xdebug port is `9000`.
